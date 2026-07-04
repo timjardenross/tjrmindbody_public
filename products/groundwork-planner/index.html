@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Groundwork — Productivity Templates</title>
+<style>
+  :root {
+    --bg: #EAE7DE;
+    --surface: #F6F4EE;
+    --surface-2: #FFFFFF;
+    --ink: #23241F;
+    --ink-soft: rgba(35,36,31,0.62);
+    --ink-faint: rgba(35,36,31,0.38);
+    --line: rgba(35,36,31,0.14);
+    --accent: #3C6E58;
+    --accent-soft: rgba(60,110,88,0.14);
+    --accent-ink: #F6F4EE;
+    --rose: #B96B62;
+    --rose-soft: rgba(185,107,98,0.16);
+    --ochre: #97711F;
+    --ochre-soft: rgba(151,113,31,0.16);
+    --shadow: 0 1px 2px rgba(35,36,31,0.08), 0 10px 28px -14px rgba(35,36,31,0.35);
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 18px;
+    --font-display: ui-serif, "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171A16;
+      --surface: #1E221C;
+      --surface-2: #262B22;
+      --ink: #EDEAE0;
+      --ink-soft: rgba(237,234,224,0.62);
+      --ink-faint: rgba(237,234,224,0.36);
+      --line: rgba(237,234,224,0.14);
+      --accent: #74C29F;
+      --accent-soft: rgba(116,194,159,0.16);
+      --accent-ink: #10201A;
+      --rose: #E29089;
+      --rose-soft: rgba(226,144,137,0.18);
+      --ochre: #E3B563;
+      --ochre-soft: rgba(227,181,99,0.18);
+      --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 28px -14px rgba(0,0,0,0.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #171A16;
+    --surface: #1E221C;
+    --surface-2: #262B22;
+    --ink: #EDEAE0;
+    --ink-soft: rgba(237,234,224,0.62);
+    --ink-faint: rgba(237,234,224,0.36);
+    --line: rgba(237,234,224,0.14);
+    --accent: #74C29F;
+    --accent-soft: rgba(116,194,159,0.16);
+    --accent-ink: #10201A;
+    --rose: #E29089;
+    --rose-soft: rgba(226,144,137,0.18);
+    --ochre: #E3B563;
+    --ochre-soft: rgba(227,181,99,0.18);
+    --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 28px -14px rgba(0,0,0,0.6);
+  }
+
+  :root[data-theme="light"] {
+    --bg: #EAE7DE;
+    --surface: #F6F4EE;
+    --surface-2: #FFFFFF;
+    --ink: #23241F;
+    --ink-soft: rgba(35,36,31,0.62);
+    --ink-faint: rgba(35,36,31,0.38);
+    --line: rgba(35,36,31,0.14);
+    --accent: #3C6E58;
+    --accent-soft: rgba(60,110,88,0.14);
+    --accent-ink: #F6F4EE;
+    --rose: #B96B62;
+    --rose-soft: rgba(185,107,98,0.16);
+    --ochre: #97711F;
+    --ochre-soft: rgba(151,113,31,0.16);
+    --shadow: 0 1px 2px rgba(35,36,31,0.08), 0 10px 28px -14px rgba(35,36,31,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  @media (prefers-color-scheme: dark) {
+    body::before { mix-blend-mode: screen; opacity: 0.035; }
+  }
+
+  a { color: inherit; }
+  button, input, select, textarea { font-family: inherit; color: inherit; }
+  button { cursor: pointer; }
+  ::selection { background: var(--accent-soft); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .app {
+    position: relative;
+    display: grid;
+    grid-template-columns: 248px 1fr;
+    min-height: 100vh;
+  }
+
+  .rail {
+    border-right: 1px solid var(--line);
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .brand .mark {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+  }
+  .brand .strap {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  .tool-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tool-nav button {
+    text-align: left;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .tool-nav button:hover { background: var(--surface); }
+  .tool-nav button[aria-current="true"] {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+  }
+  .tool-nav .t-name {
+    font-weight: 600;
+    font-size: 0.94rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tool-nav .t-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex: none;
+  }
+  .tool-nav .t-tag {
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    line-height: 1.35;
+  }
+
+  .rail-foot {
+    margin-top: auto;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+
+  .stage {
+    padding: 40px 44px 56px;
+    max-width: 980px;
+  }
+  .tool { display: none; }
+  .tool.active { display: block; }
+
+  .tool-head { margin-bottom: 28px; }
+  .tool-head h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .tool-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 52ch;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  label.field-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  input[type="text"], input[type="number"], select, textarea {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 9px 11px;
+    font-size: 0.92rem;
+    width: 100%;
+  }
+  textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+
+  .btn {
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    padding: 9px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: transform 0.1s ease, background 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: transparent;
+  }
+  .btn.ghost {
+    background: transparent;
+  }
+  .btn.small { padding: 5px 10px; font-size: 0.78rem; }
+
+  /* ---------- Pomodoro ---------- */
+  .pomodoro-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+  }
+  .timer-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .timer-mode {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timer-mode .t-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .timer-mode.break .t-dot { background: var(--rose); }
+  .timer-display {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 4.4rem;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .timer-task {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    min-height: 1.3em;
+  }
+  .timer-controls { display: flex; gap: 10px; }
+  .pomo-dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .pomo-dots .p-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    border: 1.5px solid var(--accent);
+  }
+  .pomo-dots .p-dot.filled { background: var(--accent); }
+
+  .pomo-side { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .field-row { display: flex; gap: 12px; }
+  .field-row > div { flex: 1; }
+  .log-list { display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; }
+  .log-item {
+    display: flex; justify-content: space-between; gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    font-size: 0.82rem;
+  }
+  .log-item .l-task { font-weight: 600; }
+  .log-item .l-meta { color: var(--ink-faint); font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .empty-note { color: var(--ink-faint); font-size: 0.82rem; font-style: italic; }
+
+  /* ---------- GTD ---------- */
+  .gtd-layout { display: flex; flex-direction: column; gap: 22px; }
+  .gtd-section { padding: 22px 24px; }
+  .gtd-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin: 0 0 4px;
+  }
+  .gtd-section .sec-note { font-size: 0.82rem; color: var(--ink-soft); margin: 0 0 16px; }
+  .capture-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .capture-row input { flex: 1; }
+
+  .inbox-list { display: flex; flex-direction: column; gap: 8px; }
+  .inbox-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+  .inbox-item .i-text { flex: 1; font-size: 0.9rem; }
+  .clarify-form {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    background: var(--surface-2);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+  }
+  .clarify-form select { width: auto; }
+
+  table.actions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  table.actions-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding: 0 10px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  table.actions-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  table.actions-table tr:last-child td { border-bottom: none; }
+  .ctx-chip {
+    font-size: 0.76rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pri-chip {
+    font-size: 0.76rem;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pri-chip.high { background: var(--rose-soft); color: var(--rose); }
+  .pri-chip.medium { background: var(--ochre-soft); color: var(--ochre); }
+  .pri-chip.low { background: var(--line); color: var(--ink-soft); }
+  .row-del { color: var(--ink-faint); background: none; border: none; font-size: 1rem; padding: 2px 6px; }
+  .row-del:hover { color: var(--rose); }
+
+  /* ---------- Kanban ---------- */
+  .kanban-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .kan-col { padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 200px; }
+  .kan-col.drag-over { outline: 2px dashed var(--accent); outline-offset: -4px; }
+  .kan-col-head { display: flex; align-items: center; justify-content: space-between; }
+  .kan-col-head h3 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  .kan-count {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+  .kan-add { display: flex; gap: 6px; }
+  .kan-add input { font-size: 0.85rem; }
+  .kan-cards { display: flex; flex-direction: column; gap: 8px; min-height: 40px; }
+  .kan-card {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.86rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    box-shadow: var(--shadow);
+  }
+  .kan-card[data-tag="rose"] { border-left-color: var(--rose); }
+  .kan-card[data-tag="ochre"] { border-left-color: var(--ochre); }
+  .kan-card.dragging { opacity: 0.4; }
+  .kan-card .c-text { flex: 1; word-break: break-word; }
+  .kan-tags { display: flex; gap: 5px; margin-top: 8px; }
+  .kan-tag-dot {
+    width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .kan-tag-dot[data-tag="accent"] { background: var(--accent); border-color: var(--accent); }
+  .kan-tag-dot[data-tag="rose"] { background: var(--rose); border-color: var(--rose); }
+  .kan-tag-dot[data-tag="ochre"] { background: var(--ochre); border-color: var(--ochre); }
+
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; }
+    .rail {
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      overflow-x: auto;
+    }
+    .rail-foot { display: none; }
+    .tool-nav { flex-direction: row; }
+    .tool-nav .t-tag { display: none; }
+    .stage { padding: 28px 20px 44px; }
+    .pomodoro-layout { grid-template-columns: 1fr; }
+    .kanban-board { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="rail">
+    <div class="brand">
+      <div class="mark">Groundwork</div>
+      <div class="strap">Less stress. More focus. Real progress.</div>
+    </div>
+
+    <nav class="tool-nav" id="toolNav">
+      <button data-tool="pomodoro" aria-current="true">
+        <span class="t-name"><span class="t-dot" style="background:var(--accent)"></span>Pomodoro</span>
+        <span class="t-tag">Stay focused — work in timed sprints, log the wins.</span>
+      </button>
+      <button data-tool="gtd" aria-current="false">
+        <span class="t-name"><span class="t-dot" style="background:var(--rose)"></span>GTD</span>
+        <span class="t-tag">Clear your mind — turn chaos into next actions.</span>
+      </button>
+      <button data-tool="kanban" aria-current="false">
+        <span class="t-name"><span class="t-dot" style="background:var(--ochre)"></span>Kanban</span>
+        <span class="t-tag">See your progress — move tasks to done.</span>
+      </button>
+    </nav>
+
+    <div class="rail-foot">Everything on this page saves to your browser automatically. No account, no server.</div>
+  </aside>
+
+  <main class="stage">
+
+    <!-- POMODORO -->
+    <section class="tool active" id="tool-pomodoro">
+      <div class="tool-head">
+        <h1>Pomodoro</h1>
+        <p>Boost your focus using timed work sessions. Pick a task, set a 25-minute sprint, take a 5-minute break, repeat.</p>
+      </div>
+      <div class="pomodoro-layout">
+        <div class="card timer-card">
+          <div class="timer-mode" id="timerMode"><span class="t-dot"></span><span id="timerModeLabel">Focus session</span></div>
+          <div class="timer-display" id="timerDisplay">25:00</div>
+          <div class="timer-task" id="timerTaskLabel">No task set</div>
+          <div class="timer-controls">
+            <button class="btn primary" id="btnStartPause">Start</button>
+            <button class="btn ghost" id="btnReset">Reset</button>
+          </div>
+          <div class="pomo-dots" id="pomoDots"></div>
+        </div>
+        <div class="card pomo-side">
+          <div>
+            <label class="field-label" for="taskInput">Task</label>
+            <input type="text" id="taskInput" placeholder="What are you working on?" />
+          </div>
+          <div class="field-row">
+            <div>
+              <label class="field-label" for="goalInput">Goal (pomodoros)</label>
+              <input type="number" id="goalInput" min="1" max="12" value="4" />
+            </div>
+            <div>
+              <label class="field-label" for="completedLabel">Completed</label>
+              <input type="text" id="completedLabel" value="0" disabled />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="notesInput">Short notes</label>
+            <textarea id="notesInput" placeholder="Anything worth remembering about this session..."></textarea>
+          </div>
+          <div>
+            <label class="field-label">Focus time log</label>
+            <div class="log-list" id="logList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GTD -->
+    <section class="tool" id="tool-gtd">
+      <div class="tool-head">
+        <h1>GTD</h1>
+        <p>Organize your weekly priorities so you focus on what truly matters. Capture everything, then clarify it into a next action.</p>
+      </div>
+      <div class="gtd-layout">
+        <div class="card gtd-section">
+          <h2>Inbox</h2>
+          <p class="sec-note">Capture anything on your mind here — sort it out later, not while it's spinning around your head.</p>
+          <div class="capture-row">
+            <input type="text" id="inboxInput" placeholder="Capture a thought, task, or reminder..." />
+            <button class="btn primary" id="btnAddInbox">Capture</button>
+          </div>
+          <div class="inbox-list" id="inboxList"></div>
+        </div>
+
+        <div class="card gtd-section">
+          <h2>Next Actions</h2>
+          <p class="sec-note">Specific actions you can take today, with the context you need and how urgent they are.</p>
+          <div style="overflow-x:auto">
+            <table class="actions-table">
+              <thead>
+                <tr><th>Task</th><th>Context</th><th>Priority</th><th></th></tr>
+              </thead>
+              <tbody id="actionsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card gtd-section">
+          <h2>Notes</h2>
+          <textarea id="gtdNotes" placeholder="Open loops, someday/maybe ideas, or anything else worth parking here..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- KANBAN -->
+    <section class="tool" id="tool-kanban">
+      <div class="tool-head">
+        <h1>Kanban</h1>
+        <p>Drag the cards between columns to organize your workflow, from first idea to finished.</p>
+      </div>
+      <div class="kanban-board" id="kanbanBoard"></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Navigation ---------- */
+  var navButtons = document.querySelectorAll("#toolNav button");
+  var tools = document.querySelectorAll(".tool");
+  navButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = btn.getAttribute("data-tool");
+      navButtons.forEach(function (b) { b.setAttribute("aria-current", b === btn ? "true" : "false"); });
+      tools.forEach(function (t) { t.classList.toggle("active", t.id === "tool-" + target); });
+    });
+  });
+
+  /* ---------- Storage helpers ---------- */
+  function load(key, fallback) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function save(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  /* ================= POMODORO ================= */
+  var WORK_SECONDS = 25 * 60;
+  var BREAK_SECONDS = 5 * 60;
+
+  var pomoState = load("groundwork_pomodoro_v1", {
+    task: "", goal: 4, completed: 0, log: [], notes: "",
+    mode: "work", remaining: WORK_SECONDS, running: false, lastTick: null
+  });
+
+  var taskInput = document.getElementById("taskInput");
+  var goalInput = document.getElementById("goalInput");
+  var completedLabel = document.getElementById("completedLabel");
+  var notesInput = document.getElementById("notesInput");
+  var timerDisplay = document.getElementById("timerDisplay");
+  var timerTaskLabel = document.getElementById("timerTaskLabel");
+  var timerModeEl = document.getElementById("timerMode");
+  var timerModeLabel = document.getElementById("timerModeLabel");
+  var btnStartPause = document.getElementById("btnStartPause");
+  var btnReset = document.getElementById("btnReset");
+  var pomoDots = document.getElementById("pomoDots");
+  var logList = document.getElementById("logList");
+
+  taskInput.value = pomoState.task || "";
+  goalInput.value = pomoState.goal || 4;
+  notesInput.value = pomoState.notes || "";
+
+  var pomoInterval = null;
+
+  function formatTime(sec) {
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function renderPomodoro() {
+    timerDisplay.textContent = formatTime(Math.max(0, pomoState.remaining));
+    timerTaskLabel.textContent = pomoState.task ? pomoState.task : "No task set";
+    completedLabel.value = pomoState.completed;
+    timerModeEl.classList.toggle("break", pomoState.mode === "break");
+    timerModeLabel.textContent = pomoState.mode === "break" ? "Break" : "Focus session";
+    btnStartPause.textContent = pomoState.running ? "Pause" : "Start";
+
+    pomoDots.innerHTML = "";
+    var goal = Math.max(1, pomoState.goal || 1);
+    for (var i = 0; i < goal; i++) {
+      var dot = document.createElement("span");
+      dot.className = "p-dot" + (i < pomoState.completed ? " filled" : "");
+      pomoDots.appendChild(dot);
+    }
+
+    logList.innerHTML = "";
+    if (!pomoState.log.length) {
+      var empty = document.createElement("div");
+      empty.className = "empty-note";
+      empty.textContent = "Completed sessions will show up here.";
+      logList.appendChild(empty);
+    } else {
+      pomoState.log.slice().reverse().forEach(function (entry) {
+        var item = document.createElement("div");
+        item.className = "log-item";
+        var left = document.createElement("span");
+        left.className = "l-task";
+        left.textContent = entry.task || "Untitled";
+        var right = document.createElement("span");
+        right.className = "l-meta";
+        right.textContent = entry.time;
+        item.appendChild(left);
+        item.appendChild(right);
+        logList.appendChild(item);
+      });
+    }
+  }
+
+  function persistPomodoro() {
+    pomoState.task = taskInput.value;
+    pomoState.goal = parseInt(goalInput.value, 10) || 1;
+    pomoState.notes = notesInput.value;
+    save("groundwork_pomodoro_v1", pomoState);
+  }
+
+  function tick() {
+    var now = Date.now();
+    var elapsed = pomoState.lastTick ? Math.round((now - pomoState.lastTick) / 1000) : 1;
+    pomoState.lastTick = now;
+    pomoState.remaining -= elapsed;
+
+    if (pomoState.remaining <= 0) {
+      if (pomoState.mode === "work") {
+        pomoState.completed += 1;
+        pomoState.log.push({ task: pomoState.task || "Untitled", time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) });
+        pomoState.mode = "break";
+        pomoState.remaining = BREAK_SECONDS;
+      } else {
+        pomoState.mode = "work";
+        pomoState.remaining = WORK_SECONDS;
+      }
+      playChime();
+    }
+    save("groundwork_pomodoro_v1", pomoState);
+    renderPomodoro();
+  }
+
+  function playChime() {
+    try {
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.value = 660;
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.65);
+    } catch (e) {}
+  }
+
+  btnStartPause.addEventListener("click", function () {
+    pomoState.running = !pomoState.running;
+    if (pomoState.running) {
+      pomoState.lastTick = Date.now();
+      pomoInterval = setInterval(tick, 1000);
+    } else {
+      clearInterval(pomoInterval);
+      pomoState.lastTick = null;
+    }
+    save("groundwork_pomodoro_v1", pomoState);
+    renderPomodoro();
+  });
+
+  btnReset.addEventListener("click", function () {
+    clearInterval(pomoInterval);
+    pomoState.running = false;
+    pomoState.mode = "work";
+    pomoState.remaining = WORK_SECONDS;
+    pomoState.lastTick = null;
+    save("groundwork_pomodoro_v1", pomoState);
+    renderPomodoro();
+  });
+
+  [taskInput, goalInput, notesInput].forEach(function (el) {
+    el.addEventListener("input", persistPomodoro);
+  });
+
+  renderPomodoro();
+
+  /* ================= GTD ================= */
+  var gtdState = load("groundwork_gtd_v1", {
+    inbox: [],
+    actions: [],
+    notes: "",
+    nextId: 1
+  });
+
+  var inboxInput = document.getElementById("inboxInput");
+  var btnAddInbox = document.getElementById("btnAddInbox");
+  var inboxList = document.getElementById("inboxList");
+  var actionsBody = document.getElementById("actionsBody");
+  var gtdNotes = document.getElementById("gtdNotes");
+
+  gtdNotes.value = gtdState.notes || "";
+
+  function persistGtd() {
+    save("groundwork_gtd_v1", gtdState);
+  }
+
+  function renderGtd() {
+    inboxList.innerHTML = "";
+    gtdState.inbox.forEach(function (item) {
+      if (item.clarifying) {
+        var form = document.createElement("div");
+        form.className = "clarify-form";
+        var label = document.createElement("span");
+        label.className = "i-text";
+        label.textContent = item.text;
+        var ctxSel = document.createElement("select");
+        ["@computer", "@home", "@errands", "@calls", "@waiting"].forEach(function (c) {
+          var opt = document.createElement("option");
+          opt.value = c; opt.textContent = c;
+          ctxSel.appendChild(opt);
+        });
+        var priSel = document.createElement("select");
+        ["High", "Medium", "Low"].forEach(function (p) {
+          var opt = document.createElement("option");
+          opt.value = p; opt.textContent = p;
+          priSel.appendChild(opt);
+        });
+        var confirmBtn = document.createElement("button");
+        confirmBtn.className = "btn small primary";
+        confirmBtn.textContent = "Add to Next Actions";
+        confirmBtn.addEventListener("click", function () {
+          gtdState.actions.push({ id: gtdState.nextId++, task: item.text, context: ctxSel.value, priority: priSel.value });
+          gtdState.inbox = gtdState.inbox.filter(function (i) { return i.id !== item.id; });
+          persistGtd(); renderGtd();
+        });
+        var cancelBtn = document.createElement("button");
+        cancelBtn.className = "btn small ghost";
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.addEventListener("click", function () {
+          item.clarifying = false;
+          persistGtd(); renderGtd();
+        });
+        form.appendChild(label);
+        form.appendChild(ctxSel);
+        form.appendChild(priSel);
+        form.appendChild(confirmBtn);
+        form.appendChild(cancelBtn);
+        inboxList.appendChild(form);
+      } else {
+        var row = document.createElement("div");
+        row.className = "inbox-item";
+        var text = document.createElement("span");
+        text.className = "i-text";
+        text.textContent = item.text;
+        var clarifyBtn = document.createElement("button");
+        clarifyBtn.className = "btn small";
+        clarifyBtn.textContent = "Clarify →";
+        clarifyBtn.addEventListener("click", function () {
+          item.clarifying = true;
+          renderGtd();
+        });
+        var delBtn = document.createElement("button");
+        delBtn.className = "row-del";
+        delBtn.setAttribute("aria-label", "Delete");
+        delBtn.textContent = "×";
+        delBtn.addEventListener("click", function () {
+          gtdState.inbox = gtdState.inbox.filter(function (i) { return i.id !== item.id; });
+          persistGtd(); renderGtd();
+        });
+        row.appendChild(text);
+        row.appendChild(clarifyBtn);
+        row.appendChild(delBtn);
+        inboxList.appendChild(row);
+      }
+    });
+
+    actionsBody.innerHTML = "";
+    if (!gtdState.actions.length) {
+      var tr = document.createElement("tr");
+      var td = document.createElement("td");
+      td.colSpan = 4;
+      td.className = "empty-note";
+      td.textContent = "Clarified actions will appear here.";
+      tr.appendChild(td);
+      actionsBody.appendChild(tr);
+    } else {
+      gtdState.actions.forEach(function (action) {
+        var row = document.createElement("tr");
+
+        var taskTd = document.createElement("td");
+        taskTd.textContent = action.task;
+
+        var ctxTd = document.createElement("td");
+        var ctxChip = document.createElement("span");
+        ctxChip.className = "ctx-chip";
+        ctxChip.textContent = action.context;
+        ctxTd.appendChild(ctxChip);
+
+        var priTd = document.createElement("td");
+        var priChip = document.createElement("span");
+        priChip.className = "pri-chip " + action.priority.toLowerCase();
+        priChip.textContent = action.priority;
+        priTd.appendChild(priChip);
+
+        var delTd = document.createElement("td");
+        var delBtn = document.createElement("button");
+        delBtn.className = "row-del";
+        delBtn.setAttribute("aria-label", "Delete");
+        delBtn.textContent = "×";
+        delBtn.addEventListener("click", function () {
+          gtdState.actions = gtdState.actions.filter(function (a) { return a.id !== action.id; });
+          persistGtd(); renderGtd();
+        });
+        delTd.appendChild(delBtn);
+
+        row.appendChild(taskTd);
+        row.appendChild(ctxTd);
+        row.appendChild(priTd);
+        row.appendChild(delTd);
+        actionsBody.appendChild(row);
+      });
+    }
+  }
+
+  function addInboxItem() {
+    var val = inboxInput.value.trim();
+    if (!val) return;
+    gtdState.inbox.push({ id: gtdState.nextId++, text: val, clarifying: false });
+    inboxInput.value = "";
+    persistGtd(); renderGtd();
+  }
+
+  btnAddInbox.addEventListener("click", addInboxItem);
+  inboxInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") addInboxItem();
+  });
+  gtdNotes.addEventListener("input", function () {
+    gtdState.notes = gtdNotes.value;
+    persistGtd();
+  });
+
+  renderGtd();
+
+  /* ================= KANBAN ================= */
+  var kanState = load("groundwork_kanban_v1", {
+    nextId: 1,
+    columns: {
+      todo: { title: "To Do", cards: [
+        { id: 1, text: "Sketch out the quarterly plan", tag: "accent" },
+        { id: 2, text: "Reply to outstanding emails", tag: "rose" }
+      ] },
+      doing: { title: "In Progress", cards: [
+        { id: 3, text: "Draft the client proposal", tag: "accent" }
+      ] },
+      done: { title: "Done", cards: [
+        { id: 4, text: "Set up this board", tag: "ochre" }
+      ] }
+    }
+  });
+  kanState.nextId = kanState.nextId || 5;
+
+  var kanbanBoard = document.getElementById("kanbanBoard");
+  var draggedCard = null;
+
+  function persistKanban() {
+    save("groundwork_kanban_v1", kanState);
+  }
+
+  function renderKanban() {
+    kanbanBoard.innerHTML = "";
+    Object.keys(kanState.columns).forEach(function (colKey) {
+      var col = kanState.columns[colKey];
+      var colEl = document.createElement("div");
+      colEl.className = "card kan-col";
+      colEl.setAttribute("data-col", colKey);
+
+      var head = document.createElement("div");
+      head.className = "kan-col-head";
+      var h3 = document.createElement("h3");
+      h3.textContent = col.title;
+      var count = document.createElement("span");
+      count.className = "kan-count";
+      count.textContent = col.cards.length;
+      head.appendChild(h3);
+      head.appendChild(count);
+
+      var addRow = document.createElement("div");
+      addRow.className = "kan-add";
+      var addInput = document.createElement("input");
+      addInput.type = "text";
+      addInput.placeholder = "Add a card...";
+      var addBtn = document.createElement("button");
+      addBtn.className = "btn small primary";
+      addBtn.textContent = "Add";
+      function addCard() {
+        var val = addInput.value.trim();
+        if (!val) return;
+        col.cards.push({ id: kanState.nextId++, text: val, tag: "accent" });
+        addInput.value = "";
+        persistKanban(); renderKanban();
+      }
+      addBtn.addEventListener("click", addCard);
+      addInput.addEventListener("keydown", function (e) { if (e.key === "Enter") addCard(); });
+      addRow.appendChild(addInput);
+      addRow.appendChild(addBtn);
+
+      var cardsWrap = document.createElement("div");
+      cardsWrap.className = "kan-cards";
+
+      col.cards.forEach(function (card) {
+        var cardEl = document.createElement("div");
+        cardEl.className = "kan-card";
+        cardEl.setAttribute("draggable", "true");
+        cardEl.setAttribute("data-id", card.id);
+        cardEl.setAttribute("data-tag", card.tag);
+
+        var textSpan = document.createElement("span");
+        textSpan.className = "c-text";
+        textSpan.textContent = card.text;
+
+        var delBtn = document.createElement("button");
+        delBtn.className = "row-del";
+        delBtn.setAttribute("aria-label", "Delete card");
+        delBtn.textContent = "×";
+        delBtn.addEventListener("click", function () {
+          col.cards = col.cards.filter(function (c) { return c.id !== card.id; });
+          persistKanban(); renderKanban();
+        });
+
+        cardEl.appendChild(textSpan);
+        cardEl.appendChild(delBtn);
+
+        cardEl.addEventListener("dragstart", function () {
+          draggedCard = { id: card.id, fromCol: colKey };
+          cardEl.classList.add("dragging");
+        });
+        cardEl.addEventListener("dragend", function () {
+          cardEl.classList.remove("dragging");
+          draggedCard = null;
+        });
+
+        cardsWrap.appendChild(cardEl);
+      });
+
+      colEl.appendChild(head);
+      colEl.appendChild(addRow);
+      colEl.appendChild(cardsWrap);
+
+      colEl.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        colEl.classList.add("drag-over");
+      });
+      colEl.addEventListener("dragleave", function () {
+        colEl.classList.remove("drag-over");
+      });
+      colEl.addEventListener("drop", function (e) {
+        e.preventDefault();
+        colEl.classList.remove("drag-over");
+        if (!draggedCard) return;
+        var fromCol = kanState.columns[draggedCard.fromCol];
+        var idx = fromCol.cards.findIndex(function (c) { return c.id === draggedCard.id; });
+        if (idx === -1) return;
+        var moved = fromCol.cards.splice(idx, 1)[0];
+        if (draggedCard.fromCol !== colKey) {
+          col.cards.push(moved);
+        } else {
+          col.cards.push(moved);
+        }
+        persistKanban(); renderKanban();
+      });
+
+      kanbanBoard.appendChild(colEl);
+    });
+  }
+
+  renderKanban();
+
+})();
+</script>
+</body>
+</html>
