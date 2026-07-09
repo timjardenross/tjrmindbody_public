@@ -85,21 +85,29 @@ export async function GET(request: NextRequest) {
     '\\u003c'
   );
 
+  // The token is only ever posted to this site's own origin — never to
+  // event.origin from an incoming message, which an attacker-opened popup
+  // could spoof to exfiltrate the token to a different origin entirely.
+  const trustedOrigin = new URL(request.url).origin;
+  const trustedOriginJson = JSON.stringify(trustedOrigin);
+
   const html = `<!doctype html>
 <html>
   <body>
     <script>
       (function () {
         var authPayload = ${authPayloadJson};
+        var trustedOrigin = ${trustedOriginJson};
         function receiveMessage(event) {
+          if (event.origin !== trustedOrigin || event.data !== 'authorizing:github') return;
           window.removeEventListener('message', receiveMessage, false);
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify(authPayload),
-            event.origin
+            trustedOrigin
           );
         }
         window.addEventListener('message', receiveMessage, false);
-        window.opener.postMessage('authorizing:github', '*');
+        window.opener.postMessage('authorizing:github', trustedOrigin);
       })();
     </script>
   </body>
