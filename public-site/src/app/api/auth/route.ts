@@ -18,6 +18,16 @@ const GITHUB_AUTHORIZE_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_TOKEN_URL = 'https://github.com/login/oauth/access_token';
 const STATE_COOKIE = 'sveltia_cms_oauth_state';
 
+// crypto.timingSafeEqual requires equal-length buffers; a length mismatch is
+// itself not sensitive (the state is always a fixed-format UUID we minted),
+// so it's safe to reject on length first before the constant-time compare.
+function timingSafeEqualStrings(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
 export async function GET(request: NextRequest) {
   const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
   const clientSecret = process.env.GITHUB_OAUTH_CLIENT_SECRET;
@@ -39,7 +49,11 @@ export async function GET(request: NextRequest) {
 
     const authorizeUrl = new URL(GITHUB_AUTHORIZE_URL);
     authorizeUrl.searchParams.set('client_id', clientId);
-    authorizeUrl.searchParams.set('scope', 'repo,user');
+    // repo: read/write private repo content via the GitHub API (required).
+    // read:user: identify the logged-in user for display (avatar/username)
+    // only — narrower than the full "user" scope, which also grants profile
+    // write access this CMS never needs.
+    authorizeUrl.searchParams.set('scope', 'repo,read:user');
     authorizeUrl.searchParams.set('state', csrfState);
     authorizeUrl.searchParams.set('redirect_uri', redirectUri);
 
@@ -58,7 +72,7 @@ export async function GET(request: NextRequest) {
   const state = searchParams.get('state');
   const expectedState = request.cookies.get(STATE_COOKIE)?.value;
 
-  if (!expectedState || expectedState !== state) {
+  if (!expectedState || !state || !timingSafeEqualStrings(expectedState, state)) {
     return new NextResponse('Invalid or expired OAuth state.', { status: 400 });
   }
 

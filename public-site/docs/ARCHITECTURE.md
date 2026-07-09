@@ -92,6 +92,25 @@ Next.js's App Router requires all sibling folders at the same depth to use
 the same dynamic parameter name — this is why pages render through the same
 `page.tsx` rather than a second, conflicting `[slug]` folder.
 
+### Reserved routeBase values
+
+Next.js always resolves a literal path segment before a dynamic one at the
+same depth. That means a **collection's `routeBase`** must never equal
+`admin`, `search`, `search-index.json`, `rss.xml`, `sitemap.xml`, or
+`robots.txt` — every route belonging to that collection (index, articles,
+category/tag pages, its own feed) would silently 404 forever, since
+`src/app/[collection]/` would never receive that value as `params.collection`.
+`src/lib/collections.ts` enforces this with a module-load assertion that
+throws immediately (fails the build) if a registered collection's
+`routeBase` collides with the reserved list — update
+`RESERVED_ROUTE_BASES` there if a reserved top-level route is ever added,
+renamed, or removed.
+
+Two narrower slug-level collisions are guarded (with a build-log warning,
+not a hard failure, since they depend on content rather than code) in
+`src/lib/content.ts`'s `getAllSlugs` — see `docs/PUBLISHING-GUIDE.md` for
+the exact reserved-slug list.
+
 ## Rendering strategy: SSG, not ISR
 
 All content routes are statically generated at build time

@@ -104,6 +104,35 @@ export const collections: CollectionDef[] = [
   },
 ];
 
+/**
+ * Top-level path segments outside src/app/[collection]/ that Next.js
+ * resolves before the [collection] catch-all. A collection whose routeBase
+ * matches one of these would be entirely unreachable (no error, no 404 —
+ * every one of its routes just silently 404s instead of ever rendering)
+ * because Next.js always prefers a literal path match over a dynamic
+ * segment at the same depth. Keep in sync with src/app/*'s top-level
+ * folders/route files.
+ */
+export const RESERVED_ROUTE_BASES = [
+  'admin',
+  'search',
+  'search-index.json',
+  'rss.xml',
+  'sitemap.xml',
+  'robots.txt',
+];
+
+collections.forEach((def) => {
+  if (def.routeBase && RESERVED_ROUTE_BASES.includes(def.routeBase)) {
+    throw new Error(
+      `Collection "${def.key}" has routeBase "${def.routeBase}", which collides with a ` +
+        `reserved top-level route and would be permanently unreachable. Pick a different ` +
+        `routeBase or remove it from RESERVED_ROUTE_BASES in src/lib/collections.ts if the ` +
+        `reserved route is being removed too.`
+    );
+  }
+});
+
 export function getCollection(key: CollectionKey): CollectionDef {
   const def = collections.find((c) => c.key === key);
   if (!def) throw new Error(`Unknown collection: ${key}`);

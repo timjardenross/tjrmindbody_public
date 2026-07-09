@@ -8,6 +8,19 @@
   </head>
   <body>
     <!-- Sveltia CMS reads /admin/config.yml from this same directory by default. -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <!--
+      Pinned to a specific version with a Subresource Integrity hash so a
+      compromised/tampered CDN or npm package can't silently swap in code
+      that intercepts the GitHub token this page's opener receives. To bump
+      the version: `npm pack @sveltia/cms@<version>`, extract the tarball,
+      then `openssl dgst -sha384 -binary dist/sveltia-cms.mjs | openssl base64 -A`
+      and update both the version in the URL and the integrity hash below.
+    -->
+    <script
+      src="https://unpkg.com/@sveltia/cms@0.170.4/dist/sveltia-cms.mjs"
+      type="module"
+      integrity="sha384-C4FcC9xm/3x+GooVMBNC7MBpqO08TlwtdPxzJxrFEgyu8B3xJJkaFYYiM34vJn4d"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

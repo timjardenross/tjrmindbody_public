@@ -82,7 +82,11 @@ collections:
       - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Category", name: "category", widget: "string", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
@@ -118,7 +122,17 @@ collections:
       - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Category", name: "category", widget: "string", required: false }
+      - label: "REVS Pillar"
+        name: "revsPillar"
+        widget: "select"
+        required: false
+        hint: "Which of the four REVS pillars this article is primarily about."
+        options: ["Resilience", "Emotion", "Vitality", "Stability"]
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
@@ -154,7 +168,11 @@ collections:
       - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Category", name: "category", widget: "string", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
@@ -190,11 +208,21 @@ collections:
       - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Category", name: "category", widget: "string", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }
+      - label: "Attachment (downloadable file)"
+        name: "attachment"
+        widget: "file"
+        required: false
+        hint: "PDF, worksheet or other downloadable file. Adds a Download button to the resource page."
+      - { label: "Attachment label", name: "attachmentLabel", widget: "string", required: false, hint: "Button text, e.g. \"Download the worksheet (PDF)\". Defaults to a generic label if left blank." }
       - label: "SEO"
         name: "seo"
         widget: "object"

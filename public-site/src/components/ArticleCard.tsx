@@ -19,11 +19,23 @@ export function ArticleCard({ entry }: { entry: ContentEntry<ArticleFrontmatter>
         </Link>
       )}
       <div className="flex flex-1 flex-col p-5">
-        {frontmatter.category && (
-          <span className="mb-2 text-xs font-semibold uppercase tracking-wide text-blue">
-            {frontmatter.category}
-          </span>
-        )}
+        <div className="mb-2 flex items-center gap-2">
+          {frontmatter.category && (
+            <span className="text-xs font-semibold uppercase tracking-wide text-blue">
+              {frontmatter.category}
+            </span>
+          )}
+          {frontmatter.attachment && (
+            <span className="rounded-full bg-blue-pale px-2 py-0.5 text-xs font-medium text-blue">
+              Download
+            </span>
+          )}
+          {frontmatter.revsPillar && (
+            <span className="rounded-full bg-gold/20 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-navy">
+              {frontmatter.revsPillar}
+            </span>
+          )}
+        </div>
         <h3 className="font-serif text-lg font-semibold text-navy">
           <Link href={url} className="hover:text-blue">
             {frontmatter.title}

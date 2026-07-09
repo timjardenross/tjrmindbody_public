@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
-import { CollectionDef, CollectionKey, articleCollections, getCollection } from './collections';
+import { CollectionDef, CollectionKey, articleCollections, collections, getCollection } from './collections';
 
 const CONTENT_ROOT = path.join(process.cwd(), 'content');
 
@@ -21,10 +21,15 @@ export interface ArticleFrontmatter {
   draft?: boolean;
   excerpt: string;
   category?: string;
+  /** REVS Articles only: which of the four REVS pillars this article covers. */
+  revsPillar?: string;
   tags?: string[];
   featuredImage?: string;
   featuredImageAlt?: string;
   author?: string;
+  /** Downloadable file path (e.g. a Resources worksheet/PDF), if any. */
+  attachment?: string;
+  attachmentLabel?: string;
   seo?: SeoFields;
 }
 
@@ -64,9 +69,48 @@ function slugFromFilename(filename: string): string {
   return filename.replace(/\.mdx?$/, '');
 }
 
+// A slug of "rss.xml" inside any article collection would be shadowed by
+// that collection's own /[collection]/rss.xml feed route — same 2-segment
+// path depth, and Next.js always resolves the literal route.ts over the
+// dynamic [slug] segment, so the content would exist but never be reachable
+// at its own URL.
+const RESERVED_SLUGS = new Set(['rss.xml']);
+
+// Standalone pages render at the site root (/[slug]), so a page slug can't
+// reuse anything else already living at that depth: a reserved top-level
+// route, or another collection's routeBase (src/app/[collection]/page.tsx
+// checks known collections before falling back to a standalone page, so a
+// page slug matching one would always lose, silently).
+const RESERVED_PAGE_SLUGS = new Set([
+  'admin',
+  'search',
+  'search-index.json',
+  'rss.xml',
+  'sitemap.xml',
+  'robots.txt',
+  ...collections.filter((c) => c.routeBase).map((c) => c.routeBase as string),
+]);
+
+export function isReservedSlug(key: CollectionKey, slug: string): boolean {
+  const reserved = key === 'pages' ? RESERVED_PAGE_SLUGS : RESERVED_SLUGS;
+  return reserved.has(slug);
+}
+
+function filterReservedSlugs(key: CollectionKey, slugs: string[]): string[] {
+  return slugs.filter((slug) => {
+    if (!isReservedSlug(key, slug)) return true;
+    console.warn(
+      `[content] Skipping ${key}/${slug}.md — "${slug}" collides with a reserved route and ` +
+        `would never be reachable at its own URL. Rename the file (or its CMS-set slug) to publish it.`
+    );
+    return false;
+  });
+}
+
 export function getAllSlugs(key: CollectionKey): string[] {
   const def = getCollection(key);
-  return readMarkdownFiles(collectionDir(def)).map(slugFromFilename);
+  const slugs = readMarkdownFiles(collectionDir(def)).map(slugFromFilename);
+  return filterReservedSlugs(key, slugs);
 }
 
 export function getEntryBySlug<F = ArticleFrontmatter>(

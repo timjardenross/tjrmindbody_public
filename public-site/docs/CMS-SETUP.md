@@ -52,7 +52,7 @@ route (`src/app/api/auth/route.ts`) is a self-hosted replacement for the
 OAuth broker Netlify used to provide for free via Identity/Git Gateway:
 
 1. **No `code` param** → redirects the popup to GitHub's OAuth authorize
-   screen (`scope=repo,user`), storing a CSRF `state` value in a short-lived
+   screen (`scope=repo,read:user`), storing a CSRF `state` value in a short-lived
    cookie.
 2. User approves access on GitHub → GitHub redirects back to
    `/api/auth?code=...&state=...`.

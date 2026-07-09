@@ -81,14 +81,21 @@ export default function ArticlePage({ params }: { params: RouteParams }) {
       </nav>
 
       <header className="mb-8 max-w-3xl">
-        {entry.frontmatter.category && (
-          <Link
-            href={`/${def.routeBase}/category/${encodeURIComponent(entry.frontmatter.category)}`}
-            className="mb-3 inline-block text-xs font-semibold uppercase tracking-wide text-blue"
-          >
-            {entry.frontmatter.category}
-          </Link>
-        )}
+        <div className="mb-3 flex flex-wrap items-center gap-3">
+          {entry.frontmatter.category && (
+            <Link
+              href={`/${def.routeBase}/category/${encodeURIComponent(entry.frontmatter.category)}`}
+              className="text-xs font-semibold uppercase tracking-wide text-blue"
+            >
+              {entry.frontmatter.category}
+            </Link>
+          )}
+          {entry.frontmatter.revsPillar && (
+            <span className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-navy">
+              {entry.frontmatter.revsPillar}
+            </span>
+          )}
+        </div>
         <h1 className="font-serif text-3xl font-semibold text-navy sm:text-4xl">
           {entry.frontmatter.title}
         </h1>
@@ -125,6 +132,15 @@ export default function ArticlePage({ params }: { params: RouteParams }) {
           <MarkdownContent content={entry.content} />
         </div>
         <aside className="space-y-6 lg:sticky lg:top-6 lg:self-start">
+          {entry.frontmatter.attachment && (
+            <a
+              href={entry.frontmatter.attachment}
+              download
+              className="block rounded-lg bg-navy px-5 py-4 text-center text-sm font-medium text-white hover:bg-navy-deep"
+            >
+              {entry.frontmatter.attachmentLabel || 'Download'}
+            </a>
+          )}
           <TableOfContents toc={toc} />
           {entry.frontmatter.tags && entry.frontmatter.tags.length > 0 && (
             <div className="rounded-lg border border-border bg-white p-5">
