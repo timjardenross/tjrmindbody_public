@@ -17,7 +17,7 @@
     "gray-matter": "^4.0.3",
     "minisearch": "^7.1.2",
     "next": "^14.2.35",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
