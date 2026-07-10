@@ -18,11 +18,11 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Primary" className="hidden gap-6 text-sm text-ink-mid md:flex">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-blue">
+            <Link key={link.href} href={link.href} className="hover:text-teal">
               {link.label}
             </Link>
           ))}
-          <Link href="/search" className="hover:text-blue" aria-label="Search">
+          <Link href="/search" className="hover:text-teal" aria-label="Search">
             Search
           </Link>
         </nav>

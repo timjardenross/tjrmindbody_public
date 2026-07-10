@@ -6,19 +6,22 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#1a2f52',
-          deep: '#0f1e38',
+          DEFAULT: '#1b365d',
+          deep: '#12233d',
         },
+        teal: '#2e8b8b',
+        green: '#7bae7f',
+        sand: '#d9c7a7',
         blue: {
           DEFAULT: '#2d6fa8',
           light: '#3a85c8',
           pale: '#eaf3fb',
         },
-        offwhite: '#f7f9fc',
+        offwhite: '#f4f5f7',
         border: '#dce6f0',
         ink: {
-          DEFAULT: '#1a2035',
-          mid: '#445066',
+          DEFAULT: '#252a31',
+          mid: '#5d6672',
           light: '#6b7b99',
         },
         gold: '#c9a84c',
