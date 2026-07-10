@@ -1,6 +1,7 @@
 export const site = {
   name: 'TJR Mind & Body',
-  tagline: 'Holistic wellness coaching for chronic pain, resilience and recovery.',
+  tagline:
+    'Practical resilience coaching and education for people navigating pressure, burnout, chronic pain, disruption, and steady rebuilding.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3200',
   locale: 'en-GB',
   twitter: '@tjrmindbody',

@@ -4,6 +4,21 @@ import { getAllArticleEntries } from '@/lib/content';
 import { site } from '@/lib/site';
 import { ArticleCard } from '@/components/ArticleCard';
 
+const pillars = [
+  {
+    title: 'Support',
+    detail: 'Grounded support for people navigating chronic stress, burnout, pain, disruption, and demanding seasons of life.',
+  },
+  {
+    title: 'Coaching',
+    detail: 'Practical resilience coaching focused on useful next steps, not motivational noise or all-or-nothing change.',
+  },
+  {
+    title: 'Education',
+    detail: 'Plain-English tools and frameworks that help people rebuild capacity, confidence, and steadier day-to-day systems.',
+  },
+];
+
 export default function HomePage() {
   const latest = getAllArticleEntries().slice(0, 6);
 
@@ -26,6 +41,15 @@ export default function HomePage() {
             Let&apos;s chat
           </Link>
         </div>
+      </section>
+
+      <section className="mb-16 grid gap-4 sm:grid-cols-3">
+        {pillars.map((pillar) => (
+          <div key={pillar.title} className="rounded-lg border border-border bg-white p-5">
+            <h3 className="font-medium text-navy">{pillar.title}</h3>
+            <p className="mt-1 text-sm text-ink-light">{pillar.detail}</p>
+          </div>
+        ))}
       </section>
 
       <section className="mb-16">

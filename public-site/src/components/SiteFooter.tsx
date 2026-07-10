@@ -10,6 +10,12 @@ export function SiteFooter() {
             &copy; {site.name}. All rights reserved.
           </p>
           <div className="flex gap-4">
+            <Link href="/privacy-policy" className="hover:text-blue">
+              Privacy
+            </Link>
+            <Link href="/terms-conditions" className="hover:text-blue">
+              Terms
+            </Link>
             <Link href="/blog/rss.xml" className="hover:text-blue">
               RSS
             </Link>
