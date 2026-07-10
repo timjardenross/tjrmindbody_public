@@ -1,34 +1,48 @@
 import type { MetadataRoute } from 'next';
 import { collections, sitemapCollections } from '@/lib/collections';
-import { getAllEntries, getAllPageSlugs } from '@/lib/content';
-import { absoluteUrl } from '@/lib/site';
+import { getAllPageEntries, getContentLastModified, getAllEntries, ContentEntry, ArticleFrontmatter } from '@/lib/content';
+import { absoluteUrl, SITE_LAUNCH_DATE } from '@/lib/site';
+
+function latestOf(dates: Date[]): Date {
+  return dates.length ? new Date(Math.max(...dates.map((d) => d.getTime()))) : SITE_LAUNCH_DATE;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: absoluteUrl('/'), changeFrequency: 'weekly', priority: 1 },
-    { url: absoluteUrl('/search'), changeFrequency: 'monthly', priority: 0.3 },
+  // Article-type collections only, minus drafts (already excluded by
+  // getAllEntries) and anything an editor has explicitly marked noindex via
+  // the CMS's "Hide from search engines" field.
+  const articleEntries: ContentEntry<ArticleFrontmatter>[] = sitemapCollections
+    .filter((c) => c.isArticleType)
+    .flatMap((c) => getAllEntries(c.key).filter((e) => !e.frontmatter.seo?.noindex));
+
+  const homeRoute: MetadataRoute.Sitemap = [
+    { url: absoluteUrl('/'), lastModified: latestOf(articleEntries.map(getContentLastModified)) },
   ];
 
   const collectionIndexRoutes: MetadataRoute.Sitemap = collections
     .filter((c) => c.routeBase && c.inSitemap)
-    .map((c) => ({ url: absoluteUrl(`/${c.routeBase}`), changeFrequency: 'weekly', priority: 0.6 }));
+    .map((c) => {
+      const entriesInCollection = articleEntries.filter((e) => e.collection === c.key);
+      return {
+        url: absoluteUrl(`/${c.routeBase}`),
+        lastModified: latestOf(entriesInCollection.map(getContentLastModified)),
+      };
+    });
 
-  const entryRoutes: MetadataRoute.Sitemap = sitemapCollections
-    .filter((c) => c.isArticleType)
-    .flatMap((c) =>
-      getAllEntries(c.key).map((entry) => ({
-        url: absoluteUrl(entry.url),
-        lastModified: entry.frontmatter.updated || entry.frontmatter.date,
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-      }))
-    );
-
-  const pageRoutes: MetadataRoute.Sitemap = getAllPageSlugs().map((slug) => ({
-    url: absoluteUrl(`/${slug}`),
-    changeFrequency: 'monthly',
-    priority: 0.5,
+  const entryRoutes: MetadataRoute.Sitemap = articleEntries.map((entry) => ({
+    url: absoluteUrl(entry.url),
+    lastModified: getContentLastModified(entry),
   }));
 
-  return [...staticRoutes, ...collectionIndexRoutes, ...entryRoutes, ...pageRoutes];
+  const pageRoutes: MetadataRoute.Sitemap = getAllPageEntries()
+    .filter((e) => !e.frontmatter.seo?.noindex)
+    .map((entry) => ({
+      url: absoluteUrl(entry.url),
+      lastModified: getContentLastModified(entry),
+    }));
+
+  // `/search` is an internal site-search shell with no indexable content of
+  // its own — intentionally not listed. Category/tag/pagination pages are
+  // likewise excluded as thin/duplicate listing views.
+  return [...homeRoute, ...collectionIndexRoutes, ...entryRoutes, ...pageRoutes];
 }
