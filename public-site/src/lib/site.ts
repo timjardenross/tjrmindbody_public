@@ -1,3 +1,9 @@
+// Date the public site went live (ADR-023 cutover). Used as the sitemap
+// `lastmod` fallback for routes with no frontmatter date and no git history
+// (e.g. a shallow build checkout) — a real, fixed anchor rather than
+// `new Date()`, which would falsely signal "just updated" on every build.
+export const SITE_LAUNCH_DATE = new Date('2026-07-10T00:00:00Z');
+
 export const site = {
   name: 'TJR Mind & Body',
   tagline:

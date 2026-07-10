@@ -3,6 +3,8 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import { CollectionDef, CollectionKey, articleCollections, collections, getCollection } from './collections';
+import { gitLastModified } from './git';
+import { SITE_LAUNCH_DATE } from './site';
 
 const CONTENT_ROOT = path.join(process.cwd(), 'content');
 
@@ -47,6 +49,8 @@ export interface ContentEntry<F = ArticleFrontmatter> {
   readingTimeMinutes: number;
   /** Absolute site path, e.g. /blog/my-post or /about for pages. */
   url: string;
+  /** Markdown source path relative to the project root, e.g. content/blog/my-post.md. */
+  sourcePath: string;
 }
 
 function collectionDir(def: CollectionDef): string {
@@ -135,7 +139,20 @@ export function getEntryBySlug<F = ArticleFrontmatter>(
     content,
     readingTimeMinutes: Math.max(1, Math.round(stats.minutes)),
     url: entryUrl(def, slug),
+    sourcePath: path.relative(process.cwd(), filePath),
   };
+}
+
+/**
+ * Best available last-modified date for a content entry: an explicit
+ * frontmatter `updated`/`date` field first (editorially controlled, works
+ * regardless of clone depth), then the entry's last git commit date, then
+ * the site launch date if neither is available.
+ */
+export function getContentLastModified(entry: ContentEntry<{ date?: string; updated?: string }>): Date {
+  const explicit = entry.frontmatter.updated || entry.frontmatter.date;
+  if (explicit) return new Date(explicit);
+  return gitLastModified(entry.sourcePath) || SITE_LAUNCH_DATE;
 }
 
 export interface GetAllEntriesOptions {
@@ -225,4 +242,10 @@ export function getPage(slug: string): ContentEntry<PageFrontmatter> | null {
 
 export function getAllPageSlugs(): string[] {
   return getAllSlugs('pages');
+}
+
+export function getAllPageEntries(): ContentEntry<PageFrontmatter>[] {
+  return getAllPageSlugs()
+    .map((slug) => getPage(slug))
+    .filter((e): e is ContentEntry<PageFrontmatter> => e !== null);
 }
