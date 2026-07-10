@@ -3,7 +3,7 @@ export const site = {
   tagline: 'Holistic wellness coaching for chronic pain, resilience and recovery.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3200',
   locale: 'en-GB',
-  twitter: '@tjrmindandbody',
+  twitter: '@tjrmindbody',
   defaultOgImage: '/og-default.png',
 } as const;
 

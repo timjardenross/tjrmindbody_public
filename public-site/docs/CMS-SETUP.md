@@ -8,9 +8,9 @@ production; repeat for a staging deployment if you add one).
 
 1. GitHub → Settings → Developer settings → OAuth Apps → **New OAuth App**.
 2. **Application name**: `TJR Mind & Body CMS`
-3. **Homepage URL**: your production site URL (e.g. `https://www.tjrmindandbody.com`)
+3. **Homepage URL**: your production site URL (e.g. `https://www.tjrmindbody.com`)
 4. **Authorization callback URL**: `<site-url>/api/auth` — e.g.
-   `https://www.tjrmindandbody.com/api/auth`. This must match exactly.
+   `https://www.tjrmindbody.com/api/auth`. This must match exactly.
 5. Create the app, then generate a **Client secret**.
 
 ## 2. Set environment variables
@@ -41,7 +41,7 @@ backend:
   name: github
   repo: timjardenross/USSTJROS
   branch: main
-  base_url: https://www.tjrmindandbody.com   # <- update this
+  base_url: https://www.tjrmindbody.com   # <- update this
   auth_endpoint: api/auth
 ```
 

@@ -15,7 +15,7 @@ backend:
   name: github
   repo: timjardenross/USSTJROS
   branch: main
-  base_url: https://www.tjrmindandbody.com
+  base_url: https://www.tjrmindbody.com
   auth_endpoint: api/auth
 
 # Uploaded media is committed into the repo alongside content, so it
