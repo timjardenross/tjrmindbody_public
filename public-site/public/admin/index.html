@@ -22,5 +22,18 @@
       integrity="sha384-C4FcC9xm/3x+GooVMBNC7MBpqO08TlwtdPxzJxrFEgyu8B3xJJkaFYYiM34vJn4d"
       crossorigin="anonymous"
     ></script>
+    <!--
+      This version of Sveltia CMS doesn't auto-bootstrap on script load — it
+      exports an `init()` that must be called explicitly. This second,
+      inline module re-imports the exact same URL as the script tag above,
+      so it resolves from the browser's already-fetched, already
+      SRI-verified module record rather than issuing a second network
+      fetch — the integrity check above still applies; this doesn't bypass
+      it.
+    -->
+    <script type="module">
+      import CMS from 'https://unpkg.com/@sveltia/cms@0.170.4/dist/sveltia-cms.mjs';
+      CMS.init();
+    </script>
   </body>
 </html>
