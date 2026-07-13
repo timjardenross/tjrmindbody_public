@@ -23,7 +23,7 @@ export function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setResponseMessage('Thanks for reaching out. We&apos;ll reply within 2 business days.');
+        setResponseMessage("Thanks for reaching out. We'll reply within 2 business days.");
         setName('');
         setEmail('');
         setInquiry('coaching');
