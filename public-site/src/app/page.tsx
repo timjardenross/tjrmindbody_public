@@ -4,6 +4,7 @@ import { collections } from '@/lib/collections';
 import { getAllArticleEntries } from '@/lib/content';
 import { site } from '@/lib/site';
 import { ArticleCard } from '@/components/ArticleCard';
+import { LeadMagnetForm } from '@/components/LeadMagnetForm';
 
 const pillars = [
   {
@@ -164,6 +165,9 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Lead Magnet */}
+        <LeadMagnetForm />
 
         {/* Contact */}
         <section className="mt-6 rounded-[34px] border border-border bg-white/80">
