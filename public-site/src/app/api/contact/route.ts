@@ -42,7 +42,7 @@ ${message}
             to: [{ email: recipientEmail }],
           },
         ],
-        from: { email: 'support@tjrmindbody.com', name: 'TJR Mind & Body' },
+        from: { email: 'noreply@tjrmindbody.com', name: 'TJR Mind & Body' },
         reply_to: { email },
         subject: `New enquiry from ${name}: ${inquiry}`,
         content: [
