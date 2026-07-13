@@ -49,7 +49,7 @@ export function LeadMagnetForm() {
         </p>
 
         {status === 'success' ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-green-700">
+          <div className="rounded-lg p-4 text-teal">
             <p className="font-medium">✓ {message}</p>
           </div>
         ) : (
@@ -92,7 +92,7 @@ export function LeadMagnetForm() {
             </button>
 
             {status === 'error' && (
-              <p className="text-red-600 text-sm">{message}</p>
+              <p className="text-ink-mid text-sm">{message}</p>
             )}
           </form>
         )}
