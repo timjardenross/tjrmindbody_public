@@ -44,18 +44,15 @@ export default function HomePage() {
             <Image src="/brand/logo.svg" alt="TJR Mind & Body cycle mark logo" width={96} height={84} priority />
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-teal">Mind. Body. Resilience.</p>
             <h1 className="max-w-3xl font-serif text-4xl font-bold leading-[1.02] tracking-tight text-navy sm:text-6xl">
-              Resilience coaching for people under real pressure
+              Build resilience that actually works in real life
             </h1>
           </div>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-ink sm:text-lg">
-            {site.name} is a practical resilience coaching and education brand built for people navigating real
-            pressure: chronic stress, pain, burnout, life disruption, and demanding work. It is grounded in lived
-            experience, operational resilience, and steady rebuilding rather than motivational noise.
+            Stop pushing through pain, burnout, and disruption. Stop all-or-nothing thinking. Start building practical systems that help you stay steady through chronic stress, demanding work, and whatever life throws at you.
           </p>
           <p className="mx-auto mt-5 max-w-2xl border-t border-border pt-4 text-sm font-semibold leading-6 text-navy">
-            Support, coaching, education, practical resilience, self-management, and rebuilding are the core ideas
-            here.
+            Practical coaching grounded in lived experience—not motivational noise.
           </p>
         </div>
       </section>
@@ -164,6 +161,20 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* FAQ CTA */}
+        <section className="mt-6 rounded-[34px] border border-border bg-white/80 p-8 text-center">
+          <h2 className="mb-2 font-serif text-2xl font-bold text-navy">Questions before you start?</h2>
+          <p className="mb-6 text-ink-mid">
+            Get answers to common questions about resilience coaching and how this approach works.
+          </p>
+          <Link
+            href="/faq"
+            className="inline-block rounded-lg border border-navy bg-white px-6 py-3 font-medium text-navy hover:bg-navy hover:text-white transition-colors"
+          >
+            Read the FAQ
+          </Link>
         </section>
 
         {/* Lead Magnet */}
