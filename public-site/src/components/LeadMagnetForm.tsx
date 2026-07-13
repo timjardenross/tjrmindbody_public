@@ -41,7 +41,7 @@ export function LeadMagnetForm() {
           Free Guide: The Resilience Checklist
         </h2>
         <p className="text-ink-mid mb-6">
-          Get a practical checklist for building resilience in challenging times. Enter your email and we'll send it instantly.
+          Get a practical checklist for building resilience in challenging times. Enter your email and we&apos;ll send it instantly.
         </p>
 
         {status === 'success' ? (
