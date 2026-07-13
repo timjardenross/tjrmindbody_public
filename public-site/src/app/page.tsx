@@ -163,20 +163,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FAQ CTA */}
-        <section className="mt-6 rounded-[34px] border border-border bg-white/80 p-8 text-center">
-          <h2 className="mb-2 font-serif text-2xl font-bold text-navy">Questions before you start?</h2>
-          <p className="mb-6 text-ink-mid">
-            Get answers to common questions about resilience coaching and how this approach works.
-          </p>
-          <Link
-            href="/faq"
-            className="inline-block rounded-lg border border-navy bg-white px-6 py-3 font-medium text-navy hover:bg-navy hover:text-white transition-colors"
-          >
-            Read the FAQ
-          </Link>
-        </section>
-
         {/* Lead Magnet */}
         <LeadMagnetForm />
 
