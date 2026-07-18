@@ -41,7 +41,7 @@ export default function HomePage() {
       <section className="border-b border-border bg-white">
         <div className="mx-auto max-w-5xl px-4 py-16 text-center">
           <div className="flex flex-col items-center gap-4">
-            <Image src="/brand/logo.svg" alt="TJR Mind & Body cycle mark logo" width={96} height={84} priority />
+            <Image src="/brand/logo.svg" alt="TJR HQ mark" width={96} height={96} priority />
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-teal">Mind. Body. Resilience.</p>
             <h1 className="max-w-3xl font-serif text-4xl font-bold leading-[1.02] tracking-tight text-navy sm:text-6xl">
               Build resilience that actually works in real life
