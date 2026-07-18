@@ -236,6 +236,27 @@ collections:
           - { label: "Hide from search engines", name: "noindex", widget: "boolean", default: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  # ── Discover Capacity Codes ───────────────────────────────
+  - name: "discover-capacity-codes"
+    label: "Discover Capacity Codes"
+    label_singular: "Access Code"
+    folder: "public-site/content/discover-capacity-codes"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{label}} — {{code}}"
+    sortable_fields: ["createdAt", "label"]
+    fields:
+      - { label: "Label", name: "label", widget: "string" }
+      - { label: "Code", name: "code", widget: "string" }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
+      - { label: "Created at", name: "createdAt", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss.SSS[Z]", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Last used at", name: "lastUsedAt", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss.SSS[Z]", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Response count", name: "responseCount", widget: "number", value_type: "int", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
   # ── Pages ─────────────────────────────────────────────────
   # Standalone pages (About, Coaching, Let's Chat, ...). Rendered at the
   # site root, e.g. content/pages/about.md -> /about.

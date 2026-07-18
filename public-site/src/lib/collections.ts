@@ -4,6 +4,7 @@ export type CollectionKey =
   | 'revs-articles'
   | 'operational-resilience-insights'
   | 'resources'
+  | 'discover-capacity-codes'
   | 'pages';
 
 export interface CollectionDef {
@@ -89,6 +90,18 @@ export const collections: CollectionDef[] = [
     inSearch: true,
     inFeed: true,
     inSitemap: true,
+  },
+  {
+    key: 'discover-capacity-codes',
+    label: 'Discover Capacity Codes',
+    singular: 'Access Code',
+    routeBase: null,
+    contentDir: 'discover-capacity-codes',
+    isArticleType: false,
+    description: 'Private access codes for the REVS Discover Your Capacity prototype.',
+    inSearch: false,
+    inFeed: false,
+    inSitemap: false,
   },
   {
     key: 'pages',

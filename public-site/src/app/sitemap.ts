@@ -42,7 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   // `/search` is an internal site-search shell with no indexable content of
-  // its own — intentionally not listed. Category/tag/pagination pages are
-  // likewise excluded as thin/duplicate listing views.
+  // its own — intentionally not listed. The private `/discover-your-capacity`
+  // prototype is also intentionally excluded. Category/tag/pagination pages
+  // are likewise excluded as thin/duplicate listing views.
   return [...homeRoute, ...collectionIndexRoutes, ...entryRoutes, ...pageRoutes];
 }
