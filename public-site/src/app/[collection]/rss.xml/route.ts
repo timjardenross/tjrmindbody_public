@@ -19,7 +19,7 @@ export function GET(_request: Request, { params }: { params: { collection: strin
   }
 
   const feed = buildFeed({
-    title: `${def.label} — TJR HQ`,
+    title: `${def.label} — TJR Mind & Body`,
     description: def.description,
     feedPath: `/${def.routeBase}/rss.xml`,
     entries: getAllEntries(def.key).slice(0, 50),

@@ -1,5 +1,5 @@
 # ============================================================
-# Sveltia CMS configuration — TJR HQ public content platform
+# Sveltia CMS configuration — TJR Mind & Body public content platform
 #
 # Adding a new content collection later is a matter of adding one more
 # block below (and a matching entry in src/lib/collections.ts) — no

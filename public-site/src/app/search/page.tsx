@@ -4,7 +4,7 @@ import { SearchClient } from '@/components/SearchClient';
 
 export const metadata: Metadata = buildMetadata({
   title: 'Search',
-  description: 'Search TJR HQ articles, guides, REVS articles, insights and resources.',
+  description: 'Search TJR Mind & Body articles, guides, REVS articles, insights and resources.',
   path: '/search',
 });
 

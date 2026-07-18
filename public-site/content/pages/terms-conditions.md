@@ -1,14 +1,14 @@
 ---
 title: "Website Terms"
 seo:
-  description: "Terms describing the general basis on which people use the TJR HQ website and content."
+  description: "Terms describing the general basis on which people use the TJR Mind & Body website and content."
 ---
 
-These terms describe the general basis on which people use the TJR HQ website and content.
+These terms describe the general basis on which people use the TJR Mind & Body website and content.
 
 ## Purpose of the website
 
-TJR HQ is a practical resilience coaching and education brand. The website is intended to share information about support, coaching, education, practical resilience, self-management, and rebuilding.
+TJR Mind & Body is a practical resilience coaching and education brand. The website is intended to share information about support, coaching, education, practical resilience, self-management, and rebuilding.
 
 ## General information only
 
@@ -20,11 +20,11 @@ By using the site, you agree to use it lawfully and respectfully. You should not
 
 ## Intellectual property
 
-Unless otherwise stated, the content, copy, branding, and visual materials on this site belong to TJR HQ. You may view and share the site for personal, non-misleading purposes, but you should not reproduce or republish material as your own without permission.
+Unless otherwise stated, the content, copy, branding, and visual materials on this site belong to TJR Mind & Body. You may view and share the site for personal, non-misleading purposes, but you should not reproduce or republish material as your own without permission.
 
 ## Links and third-party tools
 
-The website may contain links to third-party websites or use third-party services. TJR HQ is not responsible for the content, availability, or privacy practices of those external services.
+The website may contain links to third-party websites or use third-party services. TJR Mind & Body is not responsible for the content, availability, or privacy practices of those external services.
 
 ## Liability
 
