@@ -1,6 +1,6 @@
-# TJR Mind & Body — Public Content Platform
+# TJR HQ — Public Content Platform
 
-The canonical public publishing platform for TJR Mind & Body: a Next.js 14
+The canonical public publishing platform for TJR HQ: a Next.js 14
 site with a free, Git-based CMS (Sveltia CMS), deployed on Vercel, with
 GitHub as the single source of truth for every article, page and image.
 

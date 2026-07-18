@@ -1,10 +1,10 @@
-# Architecture Overview — TJR Mind & Body Public Content Platform
+# Architecture Overview — TJR HQ Public Content Platform
 
 ## Summary
 
 `public-site/` is a standalone Next.js 14 (App Router) application, separate
 from `lcars-portal/` (the internal, Captain-only command portal). It is the
-canonical public publishing platform for TJR Mind & Body: a Git-based CMS
+canonical public publishing platform for TJR HQ: a Git-based CMS
 (Sveltia CMS) authors Markdown content directly into this repository, and
 Vercel deploys a statically generated site on every push.
 
@@ -43,7 +43,7 @@ fast, and publicly cacheable). Keeping them as separate Next.js apps means:
 
 - Independent Vercel projects/deployments — a content publish never risks
   the internal portal, and vice versa.
-- Independent branding/design systems (TJR Mind & Body vs. LCARS).
+- Independent branding/design systems (TJR HQ vs. LCARS).
 - No shared auth boundary to reason about — the public site has none; the
   internal portal is fully gated.
 

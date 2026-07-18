@@ -2,7 +2,7 @@ import { ContactForm } from '@/components/ContactForm';
 
 export const metadata = {
   title: "Let's Chat",
-  description: 'Contact TJR Mind & Body to enquire about support, coaching, education, or a discovery conversation.',
+  description: 'Contact TJR HQ to enquire about support, coaching, education, or a discovery conversation.',
 };
 
 export default function LetsChat() {

@@ -1,7 +1,7 @@
 ---
 title: "Let's Chat"
 seo:
-  description: "Contact TJR Mind & Body to enquire about support, coaching, education, or a discovery conversation."
+  description: "Contact TJR HQ to enquire about support, coaching, education, or a discovery conversation."
 ---
 
 ## Get in touch

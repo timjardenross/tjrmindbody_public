@@ -1,10 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 210" width="240" height="210">
-  <title>TJR Mind and Body — Cycle Mark Logo</title>
-  <desc>Logo concept featuring a broken ring made of four arcs in navy, teal, green, and sand, representing the Prepare, Respond, Recover, Grow resilience cycle, with the TJR Mind and Body wordmark below.</desc>
-  <path d="M125.2,45.3 A40,40 0 0 1 159.7,79.8" fill="none" stroke="#1B365D" stroke-width="9" stroke-linecap="round"/>
-  <path d="M159.7,90.2 A40,40 0 0 1 125.2,124.7" fill="none" stroke="#2E8B8B" stroke-width="9" stroke-linecap="round"/>
-  <path d="M114.8,124.7 A40,40 0 0 1 80.3,90.2" fill="none" stroke="#7BAE7F" stroke-width="9" stroke-linecap="round"/>
-  <path d="M80.3,79.8 A40,40 0 0 1 114.8,45.3" fill="none" stroke="#D9C7A7" stroke-width="9" stroke-linecap="round"/>
-  <text x="120" y="168" text-anchor="middle" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="26" font-weight="700" fill="#1B365D">TJR</text>
-  <text x="120" y="188" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" fill="#333333" style="letter-spacing:3px">MIND &amp; BODY</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <title>TJR HQ — Mark</title>
+  <desc>Navy ring with the bold TJR wordmark centered.</desc>
+  <circle cx="120" cy="120" r="108" fill="none" stroke="#1B365D" stroke-width="7"/>
+  <text x="120" y="145" text-anchor="middle" font-family="Montserrat, Poppins, Arial, sans-serif" font-size="72" font-weight="800" fill="#1B365D">TJR</text>
 </svg>

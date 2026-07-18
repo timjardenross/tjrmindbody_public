@@ -7,7 +7,7 @@ production; repeat for a staging deployment if you add one).
 ## 1. Create a GitHub OAuth App
 
 1. GitHub → Settings → Developer settings → OAuth Apps → **New OAuth App**.
-2. **Application name**: `TJR Mind & Body CMS`
+2. **Application name**: `TJR HQ CMS`
 3. **Homepage URL**: your production site URL (e.g. `https://www.tjrmindbody.com`)
 4. **Authorization callback URL**: `<site-url>/api/auth` — e.g.
    `https://www.tjrmindbody.com/api/auth`. This must match exactly.
