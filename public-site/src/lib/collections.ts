@@ -1,6 +1,7 @@
 export type CollectionKey =
   | 'library'
   | 'discover-capacity-codes'
+  | 'instagram-highlights'
   | 'pages';
 
 export interface CollectionDef {
@@ -48,6 +49,18 @@ export const collections: CollectionDef[] = [
     contentDir: 'discover-capacity-codes',
     isArticleType: false,
     description: 'Private access codes for the REVS Discover Your Capacity prototype.',
+    inSearch: false,
+    inFeed: false,
+    inSitemap: false,
+  },
+  {
+    key: 'instagram-highlights',
+    label: 'Instagram Highlights',
+    singular: 'Instagram Highlight',
+    routeBase: null,
+    contentDir: 'instagram-highlights',
+    isArticleType: false,
+    description: 'Curated Instagram posts shown on the public site.',
     inSearch: false,
     inFeed: false,
     inSitemap: false,

@@ -119,6 +119,28 @@ collections:
       - { label: "Response count", name: "responseCount", widget: "number", value_type: "int", default: 0 }
       - { label: "Body", name: "body", widget: "markdown", required: false }
 
+  # ── Instagram Highlights ─────────────────────────────────
+  - name: "instagram-highlights"
+    label: "Instagram Highlights"
+    label_singular: "Instagram Highlight"
+    folder: "public-site/content/instagram-highlights"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{postUrl}}"
+    sortable_fields: ["order", "date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Instagram post URL", name: "postUrl", widget: "string", hint: "Paste the public Instagram post or reel URL." }
+      - { label: "Caption", name: "caption", widget: "text", required: false, hint: "Optional short site-friendly caption. Keep it concise." }
+      - { label: "Preview image", name: "image", widget: "image", required: false, hint: "Optional. Upload a square image/screenshot so the homepage does not rely on Instagram scripts." }
+      - { label: "Preview image alt text", name: "imageAlt", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Display order", name: "order", widget: "number", value_type: "int", required: false, hint: "Lower numbers show first. Leave blank to sort by date." }
+      - { label: "Active", name: "active", widget: "boolean", default: true, hint: "Turn off to hide this highlight without deleting it." }
+
   # ── Pages ─────────────────────────────────────────────────
   # Standalone pages (About, Coaching, Let's Chat, ...). Rendered at the
   # site root, e.g. content/pages/about.md -> /about.

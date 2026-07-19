@@ -53,6 +53,17 @@ export interface PageFrontmatter {
   seo?: SeoFields;
 }
 
+export interface InstagramHighlightFrontmatter {
+  title: string;
+  postUrl: string;
+  caption?: string;
+  image?: string;
+  imageAlt?: string;
+  date?: string;
+  active?: boolean;
+  order?: number;
+}
+
 export interface ContentEntry<F = ArticleFrontmatter> {
   collection: CollectionKey;
   slug: string;
@@ -265,4 +276,18 @@ export function getAllPageEntries(): ContentEntry<PageFrontmatter>[] {
   return getAllPageSlugs()
     .map((slug) => getPage(slug))
     .filter((e): e is ContentEntry<PageFrontmatter> => e !== null);
+}
+
+export function getInstagramHighlights(limit = 3): ContentEntry<InstagramHighlightFrontmatter>[] {
+  return getAllSlugs('instagram-highlights')
+    .map((slug) => getEntryBySlug<InstagramHighlightFrontmatter>('instagram-highlights', slug))
+    .filter((e): e is ContentEntry<InstagramHighlightFrontmatter> => e !== null)
+    .filter((e) => e.frontmatter.active !== false)
+    .sort((a, b) => {
+      const orderA = a.frontmatter.order ?? Number.MAX_SAFE_INTEGER;
+      const orderB = b.frontmatter.order ?? Number.MAX_SAFE_INTEGER;
+      if (orderA !== orderB) return orderA - orderB;
+      return new Date(b.frontmatter.date || 0).getTime() - new Date(a.frontmatter.date || 0).getTime();
+    })
+    .slice(0, limit);
 }

@@ -55,6 +55,26 @@ Open the collection in the sidebar, click the entry, edit, **Publish**
 again. This creates a new commit — full history is kept in Git, so any past
 version can be recovered (see `DISASTER-RECOVERY.md`).
 
+## Curating Instagram highlights
+
+The **Instagram Highlights** collection is for selected posts from
+`@tjrmindbody`. It is not a live feed and does not use Instagram's API,
+which keeps the homepage fast and avoids fragile third-party dependencies.
+
+1. Pick **Instagram Highlights** in the CMS sidebar.
+2. Click **New Instagram Highlight**.
+3. Paste the public Instagram post or reel URL.
+4. Add a short site-friendly caption.
+5. Optionally upload a square preview image or screenshot. If you skip this,
+   the homepage uses a branded text card instead.
+6. Use **Display order** if you want a specific order. Lower numbers appear
+   first.
+7. Keep **Active** on to show it, or turn it off to hide the highlight
+   without deleting it.
+
+The homepage shows up to three active highlights and links each one back to
+Instagram.
+
 ## Images
 
 Upload images directly in the **Featured image** field or inline in the

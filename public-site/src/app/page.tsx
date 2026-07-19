@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { collections } from '@/lib/collections';
-import { getAllArticleEntries } from '@/lib/content';
+import { getAllArticleEntries, getInstagramHighlights } from '@/lib/content';
 import { site } from '@/lib/site';
 import { ArticleCard } from '@/components/ArticleCard';
+import { InstagramHighlights } from '@/components/InstagramHighlights';
 import { LeadMagnetForm } from '@/components/LeadMagnetForm';
 
 const pillars = [
@@ -34,6 +35,7 @@ const resilienceCycle = [
 
 export default function HomePage() {
   const latest = getAllArticleEntries().slice(0, 6);
+  const instagramHighlights = getInstagramHighlights(3);
 
   return (
     <div>
@@ -165,6 +167,8 @@ export default function HomePage() {
 
         {/* Lead Magnet */}
         <LeadMagnetForm />
+
+        <InstagramHighlights highlights={instagramHighlights} />
 
         {/* Contact */}
         <section className="mt-6 rounded-[34px] border border-border bg-white/80">
