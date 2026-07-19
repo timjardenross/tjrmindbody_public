@@ -69,6 +69,10 @@ export default function HomePage() {
             <h2 className="mb-4 font-serif text-3xl font-bold leading-tight tracking-tight text-navy">
               Practical resilience, grounded in lived experience
             </h2>
+            <p className="mb-5 border-l-4 border-teal pl-4 text-lg font-semibold leading-7 text-navy">
+              I&apos;ve spent my career helping organisations become more resilient. Now my mission is to help people
+              do the same, one practical step at a time.
+            </p>
             <div className="space-y-4 text-ink-mid">
               <p>
                 {site.name} brings together Tim&apos;s professional background in operational resilience with the
