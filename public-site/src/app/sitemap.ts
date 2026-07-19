@@ -1,6 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { collections, sitemapCollections } from '@/lib/collections';
-import { getAllPageEntries, getContentLastModified, getAllEntries, ContentEntry, ArticleFrontmatter } from '@/lib/content';
+import {
+  getAllPageEntries,
+  getContentLastModified,
+  getAllEntries,
+  getInstagramHighlights,
+  ContentEntry,
+  ArticleFrontmatter,
+} from '@/lib/content';
 import { absoluteUrl, SITE_LAUNCH_DATE } from '@/lib/site';
 
 function latestOf(dates: Date[]): Date {
@@ -14,9 +21,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleEntries: ContentEntry<ArticleFrontmatter>[] = sitemapCollections
     .filter((c) => c.isArticleType)
     .flatMap((c) => getAllEntries(c.key).filter((e) => !e.frontmatter.seo?.noindex));
+  const pageEntries = getAllPageEntries().filter((e) => !e.frontmatter.seo?.noindex);
+  const homepageSourceEntries = [...articleEntries, ...pageEntries, ...getInstagramHighlights()];
 
   const homeRoute: MetadataRoute.Sitemap = [
-    { url: absoluteUrl('/'), lastModified: latestOf(articleEntries.map(getContentLastModified)) },
+    { url: absoluteUrl('/'), lastModified: latestOf(homepageSourceEntries.map(getContentLastModified)) },
   ];
 
   const collectionIndexRoutes: MetadataRoute.Sitemap = collections
@@ -34,12 +43,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: getContentLastModified(entry),
   }));
 
-  const pageRoutes: MetadataRoute.Sitemap = getAllPageEntries()
-    .filter((e) => !e.frontmatter.seo?.noindex)
-    .map((entry) => ({
-      url: absoluteUrl(entry.url),
-      lastModified: getContentLastModified(entry),
-    }));
+  const pageRoutes: MetadataRoute.Sitemap = pageEntries.map((entry) => ({
+    url: absoluteUrl(entry.url),
+    lastModified: getContentLastModified(entry),
+  }));
 
   // `/search` is an internal site-search shell with no indexable content of
   // its own — intentionally not listed. The private `/discover-your-capacity`
