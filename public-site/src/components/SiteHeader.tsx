@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { site } from '@/lib/site';
 
 const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Approach', href: '/approach' },
   { label: 'Library', href: '/library' },
 ];
 

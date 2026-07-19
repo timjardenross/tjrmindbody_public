@@ -8,6 +8,8 @@ describe('sitemap', () => {
   it('includes the homepage and every public page', () => {
     const urls = entries.map((e) => e.url);
     expect(urls).toContain(`${site.url}/`);
+    expect(urls).toContain(`${site.url}/about`);
+    expect(urls).toContain(`${site.url}/approach`);
     expect(urls).toContain(`${site.url}/lets-chat`);
     expect(urls).toContain(`${site.url}/privacy-policy`);
     expect(urls).toContain(`${site.url}/terms-conditions`);

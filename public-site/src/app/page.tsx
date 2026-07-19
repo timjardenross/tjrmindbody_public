@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { collections } from '@/lib/collections';
 import { getAllArticleEntries, getInstagramHighlights } from '@/lib/content';
 import { site } from '@/lib/site';
 import { ArticleCard } from '@/components/ArticleCard';
@@ -20,17 +19,6 @@ const pillars = [
     title: 'Resilience',
     detail: 'Support for self-management, steady habits, adaptability, and staying engaged when life becomes disrupted.',
   },
-  {
-    title: 'How it fits together',
-    detail: 'Mind, Body, and Resilience are not separate projects. They work together as one practical rebuilding process.',
-  },
-];
-
-const resilienceCycle = [
-  { title: 'Prepare', detail: 'Build awareness, routines, and capacity before the next demanding period hits.' },
-  { title: 'Respond', detail: 'Have a practical response for stressful weeks, pain spikes, burnout patterns, or life disruption.' },
-  { title: 'Recover', detail: 'Return to steadier ground without all-or-nothing thinking or the pressure to start from zero.' },
-  { title: 'Grow', detail: 'Learn from what worked so resilience becomes more deliberate, more practical, and more repeatable over time.' },
 ];
 
 export default function HomePage() {
@@ -56,44 +44,48 @@ export default function HomePage() {
           <p className="mx-auto mt-5 max-w-2xl border-t border-border pt-4 text-sm font-semibold leading-6 text-navy">
             Practical coaching grounded in lived experience—not motivational noise.
           </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              href="/library"
+              className="rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-navy-deep"
+            >
+              Explore the Library
+            </Link>
+            <Link
+              href="/lets-chat"
+              className="rounded-lg border border-navy/20 bg-white px-6 py-3 text-sm font-semibold text-navy hover:border-teal"
+            >
+              Let&apos;s Chat
+            </Link>
+          </div>
         </div>
       </section>
 
       <div className="mx-auto max-w-5xl px-4 py-16">
-        {/* Founder focus */}
-        <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+        {/* Founder snapshot */}
+        <section className="grid gap-5 lg:grid-cols-[1fr_0.85fr]">
           <div className="rounded-[28px] border border-border bg-white p-7">
-            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.14em] text-navy">Founder story</p>
+            <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.14em] text-navy">Why this exists</p>
             <h2 className="mb-4 font-serif text-3xl font-bold leading-tight tracking-tight text-navy">
-              Why {site.name} Exists
+              Practical resilience, grounded in lived experience
             </h2>
             <div className="space-y-4 text-ink-mid">
               <p>
-                For most of Tim&rsquo;s career, he has helped organisations prepare for, respond to, and recover from
-                disruption. Whether leading major incident response, operational resilience, or business continuity,
-                the work has always been about helping people and systems keep functioning when the pressure is
-                real.
+                {site.name} brings together Tim&apos;s professional background in operational resilience with the
+                personal reality of rebuilding through chronic pain, surgery, anxiety, setbacks, and demanding
+                seasons of life.
               </p>
               <p>
-                Outside of work, he has been learning a different kind of resilience. For more than 20 years, he has
-                lived with chronic spinal pain, multiple surgeries, anxiety, setbacks, and the ongoing challenge of
-                rebuilding health, confidence, and identity. There wasn&rsquo;t a single breakthrough or quick fix. It
-                has been a long process of learning what genuinely helps, letting go of what does not, and finding
-                ways to keep moving forward even when progress is slow.
+                The aim is simple: help people build steadier systems for real life, without hype, shame, or
+                all-or-nothing pressure.
               </p>
-              <p>
-                {site.name} was created where those two worlds meet. It brings together the discipline of
-                operational resilience with the reality of everyday life, recognising that resilience is not about
-                pushing harder or pretending everything is okay. It is about building practical habits, making
-                thoughtful decisions, and creating systems that help you adapt when life does not go to plan.
-              </p>
-              <p>
-                Whether someone is dealing with chronic pain, burnout, major life change, or simply feeling
-                overwhelmed by competing demands, the aim is to help them build resilience that works in the real
-                world, not just in theory.
-              </p>
-              <p className="font-medium text-navy">No hype. No unrealistic promises. Just practical tools, honest conversations, and steady progress.</p>
             </div>
+            <Link
+              href="/about"
+              className="mt-6 inline-flex rounded-lg border border-navy/20 px-5 py-3 text-sm font-semibold text-navy hover:border-teal"
+            >
+              Read the founder story
+            </Link>
           </div>
 
           <div className="grid gap-2.5 rounded-[28px] border border-border bg-gradient-to-br from-navy to-teal p-6 text-white">
@@ -134,10 +126,12 @@ export default function HomePage() {
         {/* Three pillars */}
         <section className="mt-10 rounded-[34px] border border-border bg-white/80">
           <div className="border-b border-border px-7 py-6">
-            <h2 className="font-serif text-2xl font-bold tracking-tight text-navy">The three pillars</h2>
-            <p className="mt-2 text-ink-mid">A simple structure that keeps the support focused and easy to understand.</p>
+            <h2 className="font-serif text-2xl font-bold tracking-tight text-navy">Mind. Body. Resilience.</h2>
+            <p className="mt-2 text-ink-mid">
+              A simple structure for making support practical, understandable, and easier to keep using.
+            </p>
           </div>
-          <div className="grid gap-4 p-6 sm:grid-cols-2">
+          <div className="grid gap-4 p-6 sm:grid-cols-3">
             {pillars.map((pillar) => (
               <div key={pillar.title} className="rounded-3xl border border-border bg-white p-5">
                 <h3 className="mb-2 font-serif text-lg font-bold text-navy">{pillar.title}</h3>
@@ -145,80 +139,40 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* Resilience cycle */}
-        <section className="mt-6 rounded-[34px] border border-border bg-white/80">
-          <div className="border-b border-border px-7 py-6">
-            <h2 className="font-serif text-2xl font-bold tracking-tight text-navy">The Resilience Cycle</h2>
-            <p className="mt-2 text-ink-mid">
-              The signature framework that runs through the coaching, education, and rebuilding approach.
-            </p>
-          </div>
-          <div className="grid gap-4 p-6 sm:grid-cols-2">
-            {resilienceCycle.map((stage) => (
-              <div key={stage.title} className="rounded-3xl border border-border bg-white p-5">
-                <h3 className="mb-2 font-serif text-lg font-bold text-navy">{stage.title}</h3>
-                <p className="text-ink-mid">{stage.detail}</p>
-              </div>
-            ))}
+          <div className="border-t border-border px-7 py-5">
+            <Link href="/approach" className="text-sm font-semibold text-blue hover:underline">
+              See the approach and Resilience Cycle
+            </Link>
           </div>
         </section>
 
         {/* Lead Magnet */}
         <LeadMagnetForm />
 
-        <InstagramHighlights highlights={instagramHighlights} />
-
-        {/* Contact */}
-        <section className="mt-6 rounded-[34px] border border-border bg-white/80">
-          <div className="border-b border-border px-7 py-6">
-            <h2 className="font-serif text-2xl font-bold tracking-tight text-navy">Contact</h2>
-            <p className="mt-2 text-ink-mid">A simple place for people to reach out for support, coaching, or education enquiries.</p>
-          </div>
-          <div className="grid gap-4 p-6 sm:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-3xl border border-border bg-white p-6">
-              <h3 className="mb-2 font-serif text-lg font-bold text-navy">Email</h3>
-              <p className="text-ink-mid">For coaching, support, education, or collaboration enquiries, email:</p>
-              <a
-                href="mailto:support@tjrmindbody.com"
-                className="mt-3 inline-block border-b border-navy/25 font-bold text-navy"
-              >
-                support@tjrmindbody.com
-              </a>
-            </div>
-            <div className="rounded-3xl border border-border bg-white p-6">
-              <h3 className="mb-2 font-serif text-lg font-bold text-navy">Approach</h3>
-              <p className="text-ink-mid">
-                This brand is about practical resilience, self-management, support, and steady rebuilding. It is
-                not positioned as treatment, cure, or medical advice.
+        <section className="mt-10 rounded-[34px] border border-border bg-navy p-7 text-white">
+          <div className="grid gap-5 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+            <div>
+              <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.14em] text-teal">Start somewhere steady</p>
+              <h2 className="font-serif text-2xl font-bold tracking-tight">Choose the next useful step</h2>
+              <p className="mt-2 text-white/75">
+                Read practical resources, learn the approach, or get in touch if you want to talk through support,
+                coaching, education, or collaboration.
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* Explore + Latest (dynamic, CMS-backed) */}
-        <section className="mt-16">
-          <h2 className="mb-6 font-serif text-2xl font-bold text-navy">Explore</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {collections
-              .filter((c) => c.routeBase)
-              .map((c) => (
-                <Link
-                  key={c.key}
-                  href={`/${c.routeBase}`}
-                  className="rounded-lg border border-border bg-white p-5 hover:border-teal"
-                >
-                  <h3 className="font-medium text-navy">{c.label}</h3>
-                  <p className="mt-1 text-sm text-ink-light">{c.description}</p>
-                </Link>
-              ))}
+            <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+              <Link href="/library" className="rounded-lg bg-white px-5 py-3 text-center text-sm font-semibold text-navy hover:bg-blue-pale">
+                Visit Library
+              </Link>
+              <Link href="/lets-chat" className="rounded-lg border border-white/25 px-5 py-3 text-center text-sm font-semibold text-white hover:border-teal">
+                Let&apos;s Chat
+              </Link>
+            </div>
           </div>
         </section>
 
         {latest.length > 0 && (
           <section className="mt-16">
-            <h2 className="mb-6 font-serif text-2xl font-bold text-navy">Latest</h2>
+            <h2 className="mb-6 font-serif text-2xl font-bold text-navy">Latest from the Library</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {latest.map((entry) => (
                 <ArticleCard key={`${entry.collection}:${entry.slug}`} entry={entry} />
@@ -226,6 +180,8 @@ export default function HomePage() {
             </div>
           </section>
         )}
+
+        <InstagramHighlights highlights={instagramHighlights} />
       </div>
     </div>
   );
