@@ -72,8 +72,8 @@ which keeps the homepage fast and avoids fragile third-party dependencies.
 7. Keep **Active** on to show it, or turn it off to hide the highlight
    without deleting it.
 
-The homepage shows up to three active highlights and links each one back to
-Instagram.
+The homepage and Library page show up to three active highlights and link
+each one back to Instagram.
 
 ## Images
 

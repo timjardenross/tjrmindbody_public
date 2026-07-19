@@ -5,11 +5,13 @@ const instagramUrl = 'https://www.instagram.com/tjrmindbody/';
 
 export function InstagramHighlights({
   highlights,
+  className = 'mt-16',
 }: {
   highlights: ContentEntry<InstagramHighlightFrontmatter>[];
+  className?: string;
 }) {
   return (
-    <section className="mt-16 rounded-[34px] border border-border bg-white/80">
+    <section className={`${className} rounded-[34px] border border-border bg-white/80`}>
       <div className="flex flex-col gap-4 border-b border-border px-7 py-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.14em] text-teal">From Instagram</p>
