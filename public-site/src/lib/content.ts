@@ -23,13 +23,25 @@ export interface ArticleFrontmatter {
   draft?: boolean;
   excerpt: string;
   category?: string;
-  /** REVS Articles only: which of the four REVS pillars this article covers. */
+  /** Library item format, e.g. Article, Guide, Worksheet, Visual Explainer. */
+  contentType?: string;
+  /** Where the item supports the REVS product journey. */
+  journeyStage?: string;
+  /** Which poster/content production class this item belongs to, if applicable. */
+  revsPosterClass?: string;
+  /** Which of the four REVS pillars this item primarily covers. */
   revsPillar?: string;
+  /** Capacity systems covered by this item. */
+  capacitySystems?: string[];
+  /** Creative Bible icon family for visual explainers/posters. */
+  iconFamily?: string;
+  season?: string;
+  week?: number;
   tags?: string[];
   featuredImage?: string;
   featuredImageAlt?: string;
   author?: string;
-  /** Downloadable file path (e.g. a Resources worksheet/PDF), if any. */
+  /** Downloadable file path (e.g. a Library worksheet/PDF), if any. */
   attachment?: string;
   attachmentLabel?: string;
   seo?: SeoFields;
@@ -47,9 +59,9 @@ export interface ContentEntry<F = ArticleFrontmatter> {
   frontmatter: F;
   content: string;
   readingTimeMinutes: number;
-  /** Absolute site path, e.g. /blog/my-post or /about for pages. */
+  /** Absolute site path, e.g. /library/my-post or /about for pages. */
   url: string;
-  /** Markdown source path relative to the project root, e.g. content/blog/my-post.md. */
+  /** Markdown source path relative to the project root, e.g. content/library/my-post.md. */
   sourcePath: string;
 }
 
@@ -185,7 +197,7 @@ export function getEntriesByCategory(
   category: string
 ): ContentEntry<ArticleFrontmatter>[] {
   return getAllEntries(key).filter(
-    (e) => (e.frontmatter.category || '').toLowerCase() === category.toLowerCase()
+    (e) => (e.frontmatter.contentType || e.frontmatter.category || '').toLowerCase() === category.toLowerCase()
   );
 }
 
@@ -197,7 +209,10 @@ export function getEntriesByTag(key: CollectionKey, tag: string): ContentEntry<A
 
 export function getAllCategories(key: CollectionKey): string[] {
   const set = new Set<string>();
-  getAllEntries(key).forEach((e) => e.frontmatter.category && set.add(e.frontmatter.category));
+  getAllEntries(key).forEach((e) => {
+    const label = e.frontmatter.contentType || e.frontmatter.category;
+    if (label) set.add(label);
+  });
   return Array.from(set).sort();
 }
 
@@ -216,7 +231,9 @@ export function getRelatedEntries(
 
   const scored = pool.map((candidate) => {
     let score = 0;
-    if (candidate.frontmatter.category && candidate.frontmatter.category === entry.frontmatter.category) {
+    const entryCategory = entry.frontmatter.contentType || entry.frontmatter.category;
+    const candidateCategory = candidate.frontmatter.contentType || candidate.frontmatter.category;
+    if (candidateCategory && candidateCategory === entryCategory) {
       score += 2;
     }
     (candidate.frontmatter.tags || []).forEach((t) => {

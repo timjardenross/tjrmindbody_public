@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description: site.tagline,
   alternates: {
     types: {
-      'application/rss+xml': absoluteUrl('/blog/rss.xml'),
+      'application/rss+xml': absoluteUrl('/library/rss.xml'),
     },
   },
 };

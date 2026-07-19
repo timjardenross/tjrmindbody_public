@@ -19,7 +19,7 @@ export function SiteFooter() {
             <Link href="/terms-conditions" className="hover:text-teal">
               Terms
             </Link>
-            <Link href="/blog/rss.xml" className="hover:text-teal">
+            <Link href="/library/rss.xml" className="hover:text-teal">
               RSS
             </Link>
             <Link href="/sitemap.xml" className="hover:text-teal">

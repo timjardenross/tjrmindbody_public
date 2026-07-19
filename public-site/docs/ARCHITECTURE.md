@@ -1,21 +1,18 @@
-# Architecture Overview — TJR HQ Public Content Platform
+# Architecture Overview — TJR Mind & Body Public Content Platform
 
 ## Summary
 
 `public-site/` is a standalone Next.js 14 (App Router) application, separate
 from `lcars-portal/` (the internal, Captain-only command portal). It is the
-canonical public publishing platform for TJR HQ: a Git-based CMS
+canonical public publishing platform for TJR Mind & Body: a Git-based CMS
 (Sveltia CMS) authors Markdown content directly into this repository, and
 Vercel deploys a statically generated site on every push.
 
 ```
 public-site/
   content/                  # Canonical content — Markdown + frontmatter
-    blog/
-    guides/
-    revs-articles/
-    operational-resilience-insights/
-    resources/
+    library/
+    discover-capacity-codes/  # Private prototype access codes, not public content
     pages/                  # Flat standalone pages (About, Let's Chat, ...)
   public/
     admin/                  # Sveltia CMS (static, no build step)
@@ -43,19 +40,25 @@ fast, and publicly cacheable). Keeping them as separate Next.js apps means:
 
 - Independent Vercel projects/deployments — a content publish never risks
   the internal portal, and vice versa.
-- Independent branding/design systems (TJR HQ vs. LCARS).
+- Independent branding/design systems (TJR Mind & Body vs. LCARS).
 - No shared auth boundary to reason about — the public site has none; the
   internal portal is fully gated.
 
-Both apps live in the same GitHub repository (`USSTJROS`) so GitHub remains
-the single canonical source of truth for the whole USS TJR system, per
-`REPOSITORY-MAP.md`.
+The public app now lives in the `timjardenross/tjrmindbody_public`
+repository, with GitHub as the canonical source of truth for content,
+media and CMS configuration.
 
 ## Content model
 
-Every content type is declared once in `src/lib/collections.ts`
-(`CollectionDef[]`). Adding a new collection later — the mission's explicit
-requirement — means:
+Every CMS collection is declared once in `src/lib/collections.ts`
+(`CollectionDef[]`). Public educational content is intentionally consolidated
+into one **Library** collection. Blog-style posts, guides, REVS articles,
+resources, visual explainers, worksheets and posters are separated by CMS
+fields such as `contentType`, `journeyStage`, `revsPillar`,
+`capacitySystems`, `revsPosterClass`, `iconFamily` and tags, rather than by
+top-level navigation.
+
+Adding a truly separate collection later means:
 
 1. Add one entry to `collections` in `src/lib/collections.ts`.
 2. Add a matching block to `public/admin/config.yml`.
@@ -65,12 +68,16 @@ No route, component or rendering code needs to change: the dynamic
 `src/app/[collection]/...` routes, search index, RSS, and sitemap are all
 generic over the registry.
 
-Five of the six collections are "article type" (blog, guides, REVS
-articles, operational resilience insights, resources) — they carry a date,
-excerpt, optional category/tags, featured image, author and SEO block, and
-get listing/detail/category/tag/pagination routes plus an RSS feed.
+The Library collection is the public "article type" collection. It carries
+a date, excerpt, optional content type, journey stage, pillar, capacity
+systems, tags, featured image, author and SEO block, and gets listing,
+detail, category, tag, pagination and RSS routes.
 
-The sixth, `pages`, is flat: standalone pages like About or Let's Chat,
+The `discover-capacity-codes` collection is private operational CMS data for
+the early Discover Your Capacity prototype. It is excluded from search, feeds
+and sitemap output.
+
+The `pages` collection is flat: standalone pages like About or Let's Chat,
 rendered at the site root (`/about`) rather than nested under a route base.
 
 ## Routing

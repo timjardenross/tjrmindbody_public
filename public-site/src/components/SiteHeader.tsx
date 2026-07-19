@@ -2,11 +2,7 @@ import Link from 'next/link';
 import { site } from '@/lib/site';
 
 const navLinks = [
-  { label: 'Blog', href: '/blog' },
-  { label: 'Guides', href: '/guides' },
-  { label: 'REVS Articles', href: '/revs-articles' },
-  { label: 'Insights', href: '/operational-resilience-insights' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'Library', href: '/library' },
 ];
 
 export function SiteHeader() {
@@ -22,9 +18,6 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link href="/search" className="hover:text-teal" aria-label="Search">
-            Search
-          </Link>
         </nav>
         <Link
           href="/lets-chat"

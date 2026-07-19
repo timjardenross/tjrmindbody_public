@@ -47,12 +47,12 @@ export function SearchClient() {
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search articles, guides and resources…"
+        placeholder="Search the Library..."
         className="w-full rounded-md border border-border px-4 py-3 text-ink focus:border-blue focus:outline-none"
         autoFocus
       />
 
-      {!documents && <p className="mt-6 text-ink-light">Loading search index…</p>}
+      {!documents && <p className="mt-6 text-ink-light">Loading search index...</p>}
 
       {documents && query.trim().length >= 2 && (
         <p className="mt-6 text-sm text-ink-light">

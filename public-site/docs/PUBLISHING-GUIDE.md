@@ -8,11 +8,10 @@ beyond logging in.
 Go to `<site-url>/admin` and sign in with GitHub (see `CMS-SETUP.md` if
 this is the very first login and the OAuth App isn't configured yet).
 
-## Creating an article
+## Creating a Library item
 
-1. Pick a collection in the left sidebar: **Blog**, **Guides**, **REVS
-   Articles**, **Operational Resilience Insights** or **Resources**.
-2. Click **New [collection]**.
+1. Pick **Library** in the left sidebar.
+2. Click **New Library Item**.
 3. Fill in:
    - **Title** — required.
    - **Date** — used for sorting and the published date shown on the page.
@@ -20,17 +19,23 @@ this is the very first login and the OAuth App isn't configured yet).
      but **not shown on the public site**. Uncheck it to publish.
    - **Excerpt** — 1–2 sentences. Shown on listing cards, in search results,
      and as the fallback social-share description.
-   - **Category** — optional, picked from a fixed list (Chronic Pain,
-     Mindfulness, Coaching, Resilience, General) — the same list across
-     every collection, on purpose, so the category filter pages stay
-     consistent. Used for the category filter/page.
-   - **REVS Pillar** (REVS Articles only) — optional, picked from
-     Resilience, Emotion, Vitality, Stability.
-   - **Tags** — optional, used for the tag filter/page and related-articles.
+   - **Content type** — Article, Guide, Resource, Visual Explainer,
+     Worksheet, Poster, Carousel, Video Script or Presentation Script.
+     This replaces the old separate Blog/Guides/Resources collections.
+   - **Journey stage** — where the item fits in the REVS ecosystem:
+     Discover, Profile, Build, Track, Grow, Coach-Supported Growth or
+     Library of Resources.
+   - **REVS Pillar** — optional, picked from Resilience, Emotion, Vitality
+     or Stability.
+   - **Capacity systems** — optional multi-select covering the 12 capacity
+     systems from the REVS Creative Bible.
+   - **REVS poster class** and **Icon family** — optional Creative Bible
+     production metadata for visual explainers, posters and design assets.
+   - **Tags** — optional, used for tag pages, related articles and search.
    - **Featured image** — optional; upload directly in the editor.
-   - **Attachment** (Resources only) — optional; upload a PDF or other
-     downloadable file directly in the editor. Adds a Download button to
-     the resource page. **Attachment label** sets the button text.
+   - **Attachment** — optional; upload a PDF or other downloadable file
+     directly in the editor. Adds a Download button to the page.
+     **Attachment label** sets the button text.
    - **Body** — the article itself, written in the Markdown editor (bold,
      headings, lists, links, images, quotes, tables all supported). Use
      `##`/`###` headings — they automatically populate the on-page table of
@@ -40,11 +45,11 @@ this is the very first login and the OAuth App isn't configured yet).
 ## Publishing = a Git commit
 
 Every Save/Publish action in the CMS commits directly to the `main` branch
-of the `USSTJROS` repository. That push triggers an automatic Vercel
-deployment — **there is no separate "deploy" step**. A published article is
+of the `timjardenross/tjrmindbody_public` repository. That push triggers an
+automatic deployment — **there is no separate "deploy" step**. A published article is
 typically live within a minute or two of clicking Publish.
 
-## Editing an existing article
+## Editing an existing Library item
 
 Open the collection in the sidebar, click the entry, edit, **Publish**
 again. This creates a new commit — full history is kept in Git, so any past
@@ -89,26 +94,23 @@ because the site already uses that URL for something else:
 - Any article slug of exactly `rss.xml` (within any collection) — that URL
   is always the collection's own RSS feed.
 - A **Pages** slug can't match `admin`, `search`, `search-index.json`,
-  `rss.xml`, `sitemap.xml`, `robots.txt`, or any collection name (`blog`,
-  `guides`, `revs-articles`, `operational-resilience-insights`,
-  `resources`) — those routes always take priority, so a colliding page
+  `rss.xml`, `sitemap.xml`, `robots.txt`, or any collection name
+  (`library`) — those routes always take priority, so a colliding page
   would silently never appear.
 
 If you accidentally hit one of these, the content still saves in the CMS —
 it just won't appear on the live site, and a build-log warning will name
 the file to rename.
 
-## Categories, tags and search
+## Content types, tags and search
 
-Categories are a fixed list (see above) rather than free text — this is
-deliberate, to stop the category filter pages from splintering into
-near-duplicates over time (e.g. "Resilience" vs "resilience "). To add or
-change a category option, edit the `options:` list for the relevant
-collection in `public/admin/config.yml` (it's the same list repeated across
-all five article collections — update all of them together to keep it
-consistent).
+Content types and REVS metadata are fixed lists rather than free text. This
+is deliberate: it stops filter pages from splintering into near-duplicates
+over time, while still letting the one Library hold articles, guides,
+resources, posters and visual explainers together. To add or change an
+option, edit the Library fields in `public/admin/config.yml`.
 
 Tags, by contrast, aren't managed in a separate list — they're created
-automatically the first time you type a new one into an article. The
-tag filter pages and the sitewide `/search` page pick up new values on the
-next deploy with no extra step.
+automatically the first time you type a new one into a Library item. Tag
+filter pages and the sitewide `/search` page pick up new values on the next
+deploy with no extra step.

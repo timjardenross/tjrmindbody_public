@@ -9,9 +9,14 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/about-me', destination: '/about', permanent: true },
-      { source: '/tjrs-blog', destination: '/blog', permanent: true },
+      { source: '/tjrs-blog', destination: '/library', permanent: true },
       { source: '/what-is-coaching', destination: '/coaching', permanent: true },
       { source: '/book-a-call', destination: '/lets-chat', permanent: true },
+      { source: '/blog', destination: '/library', permanent: true },
+      { source: '/guides', destination: '/library', permanent: true },
+      { source: '/revs-articles', destination: '/library', permanent: true },
+      { source: '/operational-resilience-insights', destination: '/library', permanent: true },
+      { source: '/resources', destination: '/library', permanent: true },
     ];
   },
   async rewrites() {

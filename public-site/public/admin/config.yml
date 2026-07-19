@@ -13,7 +13,7 @@
 
 backend:
   name: github
-  repo: timjardenross/USSTJROS
+  repo: timjardenross/tjrmindbody_public
   branch: main
   base_url: https://www.tjrmindbody.com
   auth_endpoint: api/auth
@@ -24,196 +24,58 @@ media_folder: "public-site/public/uploads"
 public_folder: "/uploads"
 
 collections:
-  # ── Blog ──────────────────────────────────────────────────
-  - name: "blog"
-    label: "Blog"
-    label_singular: "Post"
-    folder: "public-site/content/blog"
+  # ── Library ───────────────────────────────────────────────
+  - name: "library"
+    label: "Library"
+    label_singular: "Library Item"
+    folder: "public-site/content/library"
     create: true
     delete: true
     slug: "{{slug}}"
     extension: "md"
     format: "frontmatter"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
+    summary: "{{title}} — {{contentType}} — {{journeyStage}}"
+    sortable_fields: ["date", "title", "contentType", "journeyStage", "revsPillar"]
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true, hint: "Draft posts are hidden from the public site until unchecked." }
-      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "1–2 sentence summary shown on listing cards, search results and social previews." }
-      - label: "Category"
-        name: "category"
+      - { label: "Draft", name: "draft", widget: "boolean", default: true, hint: "Draft items are hidden from the public site until unchecked." }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "1–2 sentence plain-English summary shown on Library cards, search results and social previews." }
+      - label: "Content type"
+        name: "contentType"
+        widget: "select"
+        options: ["Article", "Guide", "Resource", "Insight", "Visual Explainer", "Worksheet", "Poster", "Carousel", "Video Script", "Presentation Script"]
+      - label: "REVS journey stage"
+        name: "journeyStage"
         widget: "select"
         required: false
-        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
-      - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "SEO title override", name: "title", widget: "string", required: false }
-          - { label: "Meta description", name: "description", widget: "text", required: false }
-          - { label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false }
-          - { label: "Social share image override", name: "ogImage", widget: "image", required: false }
-          - { label: "Hide from search engines", name: "noindex", widget: "boolean", default: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  # ── Guides ────────────────────────────────────────────────
-  - name: "guides"
-    label: "Guides"
-    label_singular: "Guide"
-    folder: "public-site/content/guides"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        required: false
-        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
-      - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "SEO title override", name: "title", widget: "string", required: false }
-          - { label: "Meta description", name: "description", widget: "text", required: false }
-          - { label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false }
-          - { label: "Social share image override", name: "ogImage", widget: "image", required: false }
-          - { label: "Hide from search engines", name: "noindex", widget: "boolean", default: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  # ── REVS Articles ─────────────────────────────────────────
-  - name: "revs-articles"
-    label: "REVS Articles"
-    label_singular: "REVS Article"
-    folder: "public-site/content/revs-articles"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - label: "REVS Pillar"
+        options: ["Discover Your Capacity", "Profile Your Capacity", "Build Your Capacity", "Track Your Capacity", "Grow Your Capacity", "Coach-Supported Growth", "Library of Resources"]
+      - label: "REVS pillar"
         name: "revsPillar"
         widget: "select"
         required: false
-        hint: "Which of the four REVS pillars this article is primarily about."
         options: ["Resilience", "Emotion", "Vitality", "Stability"]
-      - label: "Category"
-        name: "category"
+      - label: "Capacity systems"
+        name: "capacitySystems"
+        widget: "select"
+        multiple: true
+        required: false
+        hint: "Use this instead of separate collections. One item can cover several systems."
+        options: ["Physical Health", "Mental Health", "Executive Functioning", "Sleep", "Chronic Pain", "Emotional Wellbeing", "Relationships", "Work", "Environment", "Recovery", "Purpose", "Protective Factors"]
+      - label: "Poster class"
+        name: "revsPosterClass"
         widget: "select"
         required: false
-        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
-      - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "SEO title override", name: "title", widget: "string", required: false }
-          - { label: "Meta description", name: "description", widget: "text", required: false }
-          - { label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false }
-          - { label: "Social share image override", name: "ogImage", widget: "image", required: false }
-          - { label: "Hide from search engines", name: "noindex", widget: "boolean", default: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  # ── Operational Resilience Insights ──────────────────────
-  - name: "operational-resilience-insights"
-    label: "Operational Resilience Insights"
-    label_singular: "Insight"
-    folder: "public-site/content/operational-resilience-insights"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - label: "Category"
-        name: "category"
+        options: ["Curriculum Poster", "Public-Interest Poster", "Deep Dive"]
+      - label: "Icon family"
+        name: "iconFamily"
         widget: "select"
         required: false
-        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
-      - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - { label: "SEO title override", name: "title", widget: "string", required: false }
-          - { label: "Meta description", name: "description", widget: "text", required: false }
-          - { label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false }
-          - { label: "Social share image override", name: "ogImage", widget: "image", required: false }
-          - { label: "Hide from search engines", name: "noindex", widget: "boolean", default: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  # ── Resources ─────────────────────────────────────────────
-  - name: "resources"
-    label: "Resources"
-    label_singular: "Resource"
-    folder: "public-site/content/resources"
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    summary: "{{title}} — {{date}}"
-    sortable_fields: ["date", "title"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        required: false
-        options: ["Chronic Pain", "Mindfulness", "Coaching", "Resilience", "General"]
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+        options: ["Leadership", "People", "Communication", "Buildings", "Technology", "Data", "Risk", "Recovery", "Learning", "Nature/Environment", "Health", "Supply Chain", "Cyber", "Governance"]
+      - { label: "Season", name: "season", widget: "string", required: false, hint: "For REVS Explained Visually curriculum items, e.g. Season 1." }
+      - { label: "Week", name: "week", widget: "number", value_type: "int", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false, hint: "Flexible keywords for search. Prefer capacitySystems for core taxonomy." }
       - { label: "Featured image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured image alt text", name: "featuredImageAlt", widget: "string", required: false }
       - { label: "Author", name: "author", widget: "string", required: false, default: "TJR" }

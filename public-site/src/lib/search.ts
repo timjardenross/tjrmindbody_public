@@ -21,7 +21,13 @@ export function buildSearchDocuments(): SearchDocument[] {
       url: entry.url,
       collection: def.key,
       collectionLabel: def.label,
-      tags: entry.frontmatter.tags || [],
+      tags: [
+        ...(entry.frontmatter.tags || []),
+        ...(entry.frontmatter.capacitySystems || []),
+        entry.frontmatter.contentType,
+        entry.frontmatter.journeyStage,
+        entry.frontmatter.revsPillar,
+      ].filter((tag): tag is string => Boolean(tag)),
     }))
   );
 }

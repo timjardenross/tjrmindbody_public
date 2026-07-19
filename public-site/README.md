@@ -1,8 +1,8 @@
-# TJR HQ — Public Content Platform
+# TJR Mind & Body — Public Content Platform
 
-The canonical public publishing platform for TJR HQ: a Next.js 14
-site with a free, Git-based CMS (Sveltia CMS), deployed on Vercel, with
-GitHub as the single source of truth for every article, page and image.
+The canonical public publishing platform for TJR Mind & Body: a Next.js 14
+site with a free, Git-based CMS (Sveltia CMS), with GitHub as the single
+source of truth for every Library item, page and image.
 
 This is a separate app from `lcars-portal/` (the internal, Captain-only
 command portal) — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for
@@ -27,9 +27,10 @@ npm run dev
 
 ## Content collections
 
-Blog, Guides, REVS Articles, Operational Resilience Insights, Resources,
-and Pages — registered centrally in `src/lib/collections.ts`. Adding a new
-collection later doesn't require a redesign; see `docs/ARCHITECTURE.md`.
+Library, private Discover Capacity access codes, and Pages — registered
+centrally in `src/lib/collections.ts`. Public content is separated by
+Library metadata and tags rather than multiple top-level collections; see
+`docs/ARCHITECTURE.md`.
 
 ## Status
 

@@ -20,9 +20,14 @@ export function ArticleCard({ entry }: { entry: ContentEntry<ArticleFrontmatter>
       )}
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex items-center gap-2">
-          {frontmatter.category && (
+          {(frontmatter.contentType || frontmatter.category) && (
             <span className="text-xs font-semibold uppercase tracking-wide text-blue">
-              {frontmatter.category}
+              {frontmatter.contentType || frontmatter.category}
+            </span>
+          )}
+          {frontmatter.journeyStage && (
+            <span className="rounded-full bg-blue-pale px-2 py-0.5 text-xs font-medium text-blue">
+              {frontmatter.journeyStage}
             </span>
           )}
           {frontmatter.attachment && (
@@ -43,6 +48,11 @@ export function ArticleCard({ entry }: { entry: ContentEntry<ArticleFrontmatter>
         </h3>
         {frontmatter.excerpt && (
           <p className="mt-2 flex-1 text-sm text-ink-mid">{frontmatter.excerpt}</p>
+        )}
+        {frontmatter.capacitySystems && frontmatter.capacitySystems.length > 0 && (
+          <p className="mt-3 text-xs text-ink-light">
+            {frontmatter.capacitySystems.slice(0, 3).join(' • ')}
+          </p>
         )}
         <div className="mt-4 flex items-center gap-2 text-xs text-ink-light">
           <time dateTime={frontmatter.date}>

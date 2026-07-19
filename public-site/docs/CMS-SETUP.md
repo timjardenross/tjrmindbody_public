@@ -7,7 +7,7 @@ production; repeat for a staging deployment if you add one).
 ## 1. Create a GitHub OAuth App
 
 1. GitHub → Settings → Developer settings → OAuth Apps → **New OAuth App**.
-2. **Application name**: `TJR HQ CMS`
+2. **Application name**: `TJR Mind & Body CMS`
 3. **Homepage URL**: your production site URL (e.g. `https://www.tjrmindbody.com`)
 4. **Authorization callback URL**: `<site-url>/api/auth` — e.g.
    `https://www.tjrmindbody.com/api/auth`. This must match exactly.
@@ -39,7 +39,7 @@ production domain changes:
 ```yaml
 backend:
   name: github
-  repo: timjardenross/USSTJROS
+  repo: timjardenross/tjrmindbody_public
   branch: main
   base_url: https://www.tjrmindbody.com   # <- update this
   auth_endpoint: api/auth
@@ -71,7 +71,7 @@ Identity/Git Gateway worked.
 Visit `<site-url>/admin`, click **Login with GitHub**, approve the OAuth
 App. Anyone who authenticates this way authenticates *as themselves* against
 GitHub, so access control is just "who has write access to
-`timjardenross/USSTJROS`" — no separate CMS user database exists.
+`timjardenross/tjrmindbody_public`" — no separate CMS user database exists.
 
 ## 6. Adding a new content collection later
 

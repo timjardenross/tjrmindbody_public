@@ -82,13 +82,20 @@ export default function ArticlePage({ params }: { params: RouteParams }) {
 
       <header className="mb-8 max-w-3xl">
         <div className="mb-3 flex flex-wrap items-center gap-3">
-          {entry.frontmatter.category && (
+          {(entry.frontmatter.contentType || entry.frontmatter.category) && (
             <Link
-              href={`/${def.routeBase}/category/${encodeURIComponent(entry.frontmatter.category)}`}
+              href={`/${def.routeBase}/category/${encodeURIComponent(
+                entry.frontmatter.contentType || entry.frontmatter.category || ''
+              )}`}
               className="text-xs font-semibold uppercase tracking-wide text-blue"
             >
-              {entry.frontmatter.category}
+              {entry.frontmatter.contentType || entry.frontmatter.category}
             </Link>
+          )}
+          {entry.frontmatter.journeyStage && (
+            <span className="rounded-full bg-blue-pale px-2.5 py-0.5 text-xs font-medium text-blue">
+              {entry.frontmatter.journeyStage}
+            </span>
           )}
           {entry.frontmatter.revsPillar && (
             <span className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-navy">
@@ -112,6 +119,11 @@ export default function ArticlePage({ params }: { params: RouteParams }) {
           <span aria-hidden="true">&middot;</span>
           <span>{entry.readingTimeMinutes} min read</span>
         </div>
+        {entry.frontmatter.capacitySystems && entry.frontmatter.capacitySystems.length > 0 && (
+          <p className="mt-4 text-sm text-ink-light">
+            Capacity systems: {entry.frontmatter.capacitySystems.join(', ')}
+          </p>
+        )}
       </header>
 
       {entry.frontmatter.featuredImage && (

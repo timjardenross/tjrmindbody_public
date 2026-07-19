@@ -4,7 +4,7 @@
 
 Because this is a Git-based CMS with no external database:
 
-- **All content, media and configuration live in the `USSTJROS` GitHub
+- **All content, media and configuration live in the `tjrmindbody_public` GitHub
   repository.** There is no separate content database to lose. As long as
   the GitHub repo exists, the entire content platform (every article,
   image, and CMS config) can be reconstructed.
@@ -19,10 +19,10 @@ Because this is a Git-based CMS with no external database:
 
 ```bash
 # Find the last commit that touched the file:
-git log --follow -- public-site/content/blog/my-post.md
+git log --follow -- public-site/content/library/my-post.md
 
 # Restore it from a specific commit:
-git checkout <commit-sha> -- public-site/content/blog/my-post.md
+git checkout <commit-sha> -- public-site/content/library/my-post.md
 git commit -m "restore: recover my-post.md"
 git push
 ```

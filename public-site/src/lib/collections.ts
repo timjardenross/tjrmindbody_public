@@ -1,9 +1,5 @@
 export type CollectionKey =
-  | 'blog'
-  | 'guides'
-  | 'revs-articles'
-  | 'operational-resilience-insights'
-  | 'resources'
+  | 'library'
   | 'discover-capacity-codes'
   | 'pages';
 
@@ -11,7 +7,7 @@ export interface CollectionDef {
   key: CollectionKey;
   label: string;
   singular: string;
-  /** Route segment the collection is served under, e.g. /blog. `null` means
+  /** Route segment the collection is served under, e.g. /library. `null` means
    *  entries are flat top-level routes (used for the `pages` collection). */
   routeBase: string | null;
   /** Directory under public-site/content/ holding this collection's Markdown files. */
@@ -32,61 +28,14 @@ export interface CollectionDef {
  */
 export const collections: CollectionDef[] = [
   {
-    key: 'blog',
-    label: 'Blog',
-    singular: 'Post',
-    routeBase: 'blog',
-    contentDir: 'blog',
+    key: 'library',
+    label: 'Library',
+    singular: 'Library Item',
+    routeBase: 'library',
+    contentDir: 'library',
     isArticleType: true,
-    description: 'Regular articles on wellness, coaching and chronic pain recovery.',
-    inSearch: true,
-    inFeed: true,
-    inSitemap: true,
-  },
-  {
-    key: 'guides',
-    label: 'Guides',
-    singular: 'Guide',
-    routeBase: 'guides',
-    contentDir: 'guides',
-    isArticleType: true,
-    description: 'In-depth, evergreen guides.',
-    inSearch: true,
-    inFeed: true,
-    inSitemap: true,
-  },
-  {
-    key: 'revs-articles',
-    label: 'REVS Articles',
-    singular: 'REVS Article',
-    routeBase: 'revs-articles',
-    contentDir: 'revs-articles',
-    isArticleType: true,
-    description: 'Resilience, Emotion, Vitality and Stability articles.',
-    inSearch: true,
-    inFeed: true,
-    inSitemap: true,
-  },
-  {
-    key: 'operational-resilience-insights',
-    label: 'Operational Resilience Insights',
-    singular: 'Insight',
-    routeBase: 'operational-resilience-insights',
-    contentDir: 'operational-resilience-insights',
-    isArticleType: true,
-    description: 'Insights on building resilience into everyday operations.',
-    inSearch: true,
-    inFeed: true,
-    inSitemap: true,
-  },
-  {
-    key: 'resources',
-    label: 'Resources',
-    singular: 'Resource',
-    routeBase: 'resources',
-    contentDir: 'resources',
-    isArticleType: true,
-    description: 'Practical tools, worksheets and reference material.',
+    description:
+      'REVS educational articles, guides, worksheets, visual explainers and practical resources for understanding human capacity.',
     inSearch: true,
     inFeed: true,
     inSitemap: true,
