@@ -4,7 +4,6 @@ import {
   getAllPageEntries,
   getContentLastModified,
   getAllEntries,
-  getInstagramHighlights,
   ContentEntry,
   ArticleFrontmatter,
 } from '@/lib/content';
@@ -22,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((c) => c.isArticleType)
     .flatMap((c) => getAllEntries(c.key).filter((e) => !e.frontmatter.seo?.noindex));
   const pageEntries = getAllPageEntries().filter((e) => !e.frontmatter.seo?.noindex);
-  const homepageSourceEntries = [...articleEntries, ...pageEntries, ...getInstagramHighlights()];
+  const homepageSourceEntries = [...articleEntries, ...pageEntries];
 
   const homeRoute: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'), lastModified: latestOf(homepageSourceEntries.map(getContentLastModified)) },

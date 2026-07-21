@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllArticleEntries, getInstagramHighlights } from '@/lib/content';
+import { getAllArticleEntries } from '@/lib/content';
 import { site } from '@/lib/site';
 import { ArticleCard } from '@/components/ArticleCard';
-import { InstagramHighlights } from '@/components/InstagramHighlights';
 import { LeadMagnetForm } from '@/components/LeadMagnetForm';
 
 const pillars = [
@@ -23,7 +22,6 @@ const pillars = [
 
 export default function HomePage() {
   const latest = getAllArticleEntries().slice(0, 6);
-  const instagramHighlights = getInstagramHighlights(3);
 
   return (
     <div>
@@ -184,8 +182,6 @@ export default function HomePage() {
             </div>
           </section>
         )}
-
-        <InstagramHighlights highlights={instagramHighlights} />
       </div>
     </div>
   );
