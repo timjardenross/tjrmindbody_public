@@ -41,6 +41,10 @@ Use the local site at `http://localhost:3200` or the branch preview URL
 from Vercel. Only merge or promote changes when you are ready to update
 production.
 
+For page work, start from the `codex/coming-soon-preview` branch so the
+preview stays focused on the coming-soon workflow and does not pull in the
+broader in-progress site changes.
+
 ## Working on the CMS editor locally
 
 The `/admin` editor is fully static (loaded from a CDN) and will run at
