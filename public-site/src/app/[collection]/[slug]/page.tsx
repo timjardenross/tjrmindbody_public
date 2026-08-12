@@ -62,115 +62,120 @@ export default function ArticlePage({ params }: { params: RouteParams }) {
   ]);
 
   return (
-    <article className="mx-auto max-w-5xl px-4 py-16">
+    <article className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
 
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-ink-light">
-        <Link href="/" className="hover:text-blue">
-          Home
-        </Link>{' '}
-        &rsaquo;{' '}
-        <Link href={`/${def.routeBase}`} className="hover:text-blue">
-          {def.label}
-        </Link>{' '}
-        &rsaquo; <span className="text-ink-mid">{entry.frontmatter.title}</span>
-      </nav>
+      <div className="overflow-hidden rounded-[34px] border border-border bg-gradient-to-br from-white via-offwhite to-blue-pale/50 shadow-[0_18px_50px_rgba(27,54,93,0.08)]">
+        <div className="border-b border-border px-6 py-8 sm:px-8 sm:py-10">
+          <nav aria-label="Breadcrumb" className="text-sm text-ink-light">
+            <Link href="/" className="hover:text-blue">
+              Home
+            </Link>{' '}
+            &rsaquo;{' '}
+            <Link href={`/${def.routeBase}`} className="hover:text-blue">
+              {def.label}
+            </Link>{' '}
+            &rsaquo; <span className="text-ink-mid">{entry.frontmatter.title}</span>
+          </nav>
 
-      <header className="mb-8 max-w-3xl">
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          {(entry.frontmatter.contentType || entry.frontmatter.category) && (
-            <Link
-              href={`/${def.routeBase}/category/${encodeURIComponent(
-                entry.frontmatter.contentType || entry.frontmatter.category || ''
-              )}`}
-              className="text-xs font-semibold uppercase tracking-wide text-blue"
-            >
-              {entry.frontmatter.contentType || entry.frontmatter.category}
-            </Link>
-          )}
-          {entry.frontmatter.journeyStage && (
-            <span className="rounded-full bg-blue-pale px-2.5 py-0.5 text-xs font-medium text-blue">
-              {entry.frontmatter.journeyStage}
-            </span>
-          )}
-          {entry.frontmatter.revsPillar && (
-            <span className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-navy">
-              {entry.frontmatter.revsPillar}
-            </span>
-          )}
-        </div>
-        <h1 className="font-serif text-3xl font-semibold text-navy sm:text-4xl">
-          {entry.frontmatter.title}
-        </h1>
-        <div className="mt-4 flex items-center gap-2 text-sm text-ink-light">
-          {entry.frontmatter.author && <span>{entry.frontmatter.author}</span>}
-          <span aria-hidden="true">&middot;</span>
-          <time dateTime={entry.frontmatter.date}>
-            {new Date(entry.frontmatter.date).toLocaleDateString('en-GB', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-          <span aria-hidden="true">&middot;</span>
-          <span>{entry.readingTimeMinutes} min read</span>
-        </div>
-        {entry.frontmatter.capacitySystems && entry.frontmatter.capacitySystems.length > 0 && (
-          <p className="mt-4 text-sm text-ink-light">
-            Capacity systems: {entry.frontmatter.capacitySystems.join(', ')}
-          </p>
-        )}
-      </header>
-
-      {entry.frontmatter.featuredImage && (
-        <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-lg">
-          <Image
-            src={entry.frontmatter.featuredImage}
-            alt={entry.frontmatter.featuredImageAlt || entry.frontmatter.title}
-            fill
-            priority
-            className="object-cover"
-            sizes="(min-width: 1024px) 1024px, 100vw"
-          />
-        </div>
-      )}
-
-      <div className="grid gap-10 lg:grid-cols-[1fr_260px]">
-        <div className="prose prose-slate max-w-none">
-          <MarkdownContent content={entry.content} />
-        </div>
-        <aside className="space-y-6 lg:sticky lg:top-6 lg:self-start">
-          {entry.frontmatter.attachment && (
-            <a
-              href={entry.frontmatter.attachment}
-              download
-              className="block rounded-lg bg-navy px-5 py-4 text-center text-sm font-medium text-white hover:bg-navy-deep"
-            >
-              {entry.frontmatter.attachmentLabel || 'Download'}
-            </a>
-          )}
-          <TableOfContents toc={toc} />
-          {entry.frontmatter.tags && entry.frontmatter.tags.length > 0 && (
-            <div className="rounded-lg border border-border bg-white p-5">
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-light">Tags</h2>
-              <div className="flex flex-wrap gap-2 text-sm">
-                {entry.frontmatter.tags.map((tag) => (
-                  <Link
-                    key={tag}
-                    href={`/${def.routeBase}/tag/${encodeURIComponent(tag)}`}
-                    className="rounded-full bg-blue-pale px-3 py-1 text-blue hover:bg-blue hover:text-white"
-                  >
-                    #{tag}
-                  </Link>
-                ))}
-              </div>
+          <div className="mt-4 max-w-3xl">
+            <div className="mb-3 flex flex-wrap items-center gap-3">
+              {(entry.frontmatter.contentType || entry.frontmatter.category) && (
+                <Link
+                  href={`/${def.routeBase}/category/${encodeURIComponent(
+                    entry.frontmatter.contentType || entry.frontmatter.category || ''
+                  )}`}
+                  className="text-xs font-semibold uppercase tracking-wide text-blue"
+                >
+                  {entry.frontmatter.contentType || entry.frontmatter.category}
+                </Link>
+              )}
+              {entry.frontmatter.journeyStage && (
+                <span className="rounded-full bg-blue-pale px-2.5 py-0.5 text-xs font-medium text-blue">
+                  {entry.frontmatter.journeyStage}
+                </span>
+              )}
+              {entry.frontmatter.revsPillar && (
+                <span className="rounded-full bg-gold/20 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-navy">
+                  {entry.frontmatter.revsPillar}
+                </span>
+              )}
             </div>
-          )}
-        </aside>
+            <h1 className="font-serif text-3xl font-bold tracking-tight text-navy sm:text-5xl">
+              {entry.frontmatter.title}
+            </h1>
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-ink-light">
+              {entry.frontmatter.author && <span>{entry.frontmatter.author}</span>}
+              <span aria-hidden="true">&middot;</span>
+              <time dateTime={entry.frontmatter.date}>
+                {new Date(entry.frontmatter.date).toLocaleDateString('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <span aria-hidden="true">&middot;</span>
+              <span>{entry.readingTimeMinutes} min read</span>
+            </div>
+            {entry.frontmatter.capacitySystems && entry.frontmatter.capacitySystems.length > 0 && (
+              <p className="mt-4 text-sm text-ink-light">
+                Capacity systems: {entry.frontmatter.capacitySystems.join(', ')}
+              </p>
+            )}
+          </div>
+        </div>
+        {entry.frontmatter.featuredImage && (
+          <div className="px-6 pt-8 sm:px-8">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl">
+              <Image
+                src={entry.frontmatter.featuredImage}
+                alt={entry.frontmatter.featuredImageAlt || entry.frontmatter.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1024px) 1024px, 100vw"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="grid gap-10 px-6 py-8 sm:px-8 lg:grid-cols-[1fr_260px]">
+          <div className="prose prose-slate max-w-none">
+            <MarkdownContent content={entry.content} />
+          </div>
+          <aside className="space-y-6 lg:sticky lg:top-6 lg:self-start">
+            {entry.frontmatter.attachment && (
+              <a
+                href={entry.frontmatter.attachment}
+                download
+                className="block rounded-lg bg-navy px-5 py-4 text-center text-sm font-medium text-white hover:bg-navy-deep"
+              >
+                {entry.frontmatter.attachmentLabel || 'Download'}
+              </a>
+            )}
+            <TableOfContents toc={toc} />
+            {entry.frontmatter.tags && entry.frontmatter.tags.length > 0 && (
+              <div className="rounded-lg border border-border bg-white p-5">
+                <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-light">Tags</h2>
+                <div className="flex flex-wrap gap-2 text-sm">
+                  {entry.frontmatter.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/${def.routeBase}/tag/${encodeURIComponent(tag)}`}
+                      className="rounded-full bg-blue-pale px-3 py-1 text-blue hover:bg-blue hover:text-white"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
+        </div>
       </div>
 
       {related.length > 0 && (

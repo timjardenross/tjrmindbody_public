@@ -25,6 +25,22 @@ picks up filesystem changes on refresh, no CMS login required. Frontmatter
 schema per collection is documented in `PUBLISHING-GUIDE.md` and enforced
 (loosely, via TypeScript types) in `src/lib/content.ts`.
 
+## Preview vs production
+
+Production is intentionally locked to the coming-soon page. Preview
+deployments and local development render the full site so you can keep
+working on the pages safely without affecting what visitors see live.
+
+If you need to check page changes:
+
+```bash
+npm run dev
+```
+
+Use the local site at `http://localhost:3200` or the branch preview URL
+from Vercel. Only merge or promote changes when you are ready to update
+production.
+
 ## Working on the CMS editor locally
 
 The `/admin` editor is fully static (loaded from a CDN) and will run at

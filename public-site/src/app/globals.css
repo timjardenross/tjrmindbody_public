@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: light;
+}
+
 body {
   color: theme('colors.ink.DEFAULT');
   background: theme('colors.offwhite');

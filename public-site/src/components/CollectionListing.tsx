@@ -36,7 +36,7 @@ export function CollectionListing({
         <div className="mb-10 flex flex-wrap gap-6 text-sm">
           {categories && categories.length > 0 && (
             <div>
-              <span className="mr-2 font-semibold text-ink-light">Categories:</span>
+              <span className="mr-2 font-semibold text-ink-light">Browse by stage:</span>
               {categories.map((c) => (
                 <Link
                   key={c}
@@ -50,7 +50,7 @@ export function CollectionListing({
           )}
           {tags && tags.length > 0 && (
             <div>
-              <span className="mr-2 font-semibold text-ink-light">Tags:</span>
+              <span className="mr-2 font-semibold text-ink-light">Browse by topic:</span>
               {tags.map((t) => (
                 <Link
                   key={t}
@@ -66,7 +66,10 @@ export function CollectionListing({
       ) : null}
 
       {entries.length === 0 ? (
-        <p className="text-ink-light">Nothing published here yet — check back soon.</p>
+        <div className="rounded-[28px] border border-border bg-white p-8">
+          <p className="text-ink-mid">This space is just beginning. The first pieces will appear here soon, and they will be built to help you start gently.</p>
+          <p className="mt-3 text-sm text-ink-light">If you are looking for a place to begin right now, the Assessment or Approach page is usually the best next step.</p>
+        </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {entries.map((entry) => (

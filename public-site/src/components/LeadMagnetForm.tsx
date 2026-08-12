@@ -36,10 +36,10 @@ export function LeadMagnetForm() {
     <section className="my-16 rounded-[34px] border border-border bg-white p-8">
       <div className="max-w-2xl">
         <h2 className="font-serif text-2xl font-bold text-navy mb-2">
-          Stay Connected
+          Stay in the loop
         </h2>
         <p className="text-ink-mid mb-6">
-          Get updates on new coaching resources, insights, and rebuilding strategies delivered to your inbox.
+          If you want occasional updates on new resources, reflections, and rebuilding ideas, you’re welcome to join.
         </p>
 
         {status === 'success' ? (
@@ -61,7 +61,7 @@ export function LeadMagnetForm() {
               disabled={status === 'loading'}
               className="bg-navy text-white px-6 py-2 rounded-lg font-medium hover:bg-navy-deep disabled:opacity-50 whitespace-nowrap"
             >
-              {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+              {status === 'loading' ? 'Joining...' : 'Join'}
             </button>
 
             {status === 'error' && <p className="text-ink-mid text-sm">{message}</p>}

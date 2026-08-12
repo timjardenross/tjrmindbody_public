@@ -78,12 +78,25 @@ export default function CollectionOrPageRoute({ params }: { params: { collection
   if (!page) notFound();
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="mb-8 font-serif text-3xl font-semibold text-navy sm:text-4xl">
-        {page.frontmatter.title}
-      </h1>
-      <div className="prose prose-slate max-w-none">
-        <MarkdownContent content={page.content} />
+    <article className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
+      <div className="overflow-hidden rounded-[34px] border border-border bg-gradient-to-br from-white via-offwhite to-blue-pale/50 shadow-[0_18px_50px_rgba(27,54,93,0.08)]">
+        <div className="border-b border-border px-6 py-8 sm:px-8 sm:py-10">
+          <div className="mt-3 max-w-3xl">
+            <h1 className="font-serif text-3xl font-bold tracking-tight text-navy sm:text-5xl">
+              {page.frontmatter.title}
+            </h1>
+            {page.frontmatter.seo?.description && (
+              <p className="mt-4 max-w-2xl text-base leading-8 text-ink-mid sm:text-lg">
+                {page.frontmatter.seo.description}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="grid gap-10 px-6 py-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="prose prose-slate max-w-none prose-headings:scroll-mt-24 prose-p:leading-8 prose-li:leading-7 prose-blockquote:border-l-gold prose-blockquote:bg-white/70 prose-blockquote:py-1 prose-blockquote:font-medium">
+            <MarkdownContent content={page.content} />
+          </div>
+        </div>
       </div>
     </article>
   );

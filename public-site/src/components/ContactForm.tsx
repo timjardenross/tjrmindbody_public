@@ -42,7 +42,8 @@ export function ContactForm() {
     <div className="max-w-2xl rounded-[34px] border border-border bg-white p-8">
       <h2 className="mb-2 font-serif text-2xl font-bold text-navy">Get in touch</h2>
       <p className="mb-6 text-ink-mid">
-        For coaching, support, education, or collaboration enquiries, use the form below or email support@tjrmindbody.com.
+        For coaching or REVS Program enquiries, use the form below or email support@tjrmindbody.com.
+        A short note about what you are looking for and where you are starting from is especially helpful.
       </p>
 
       {status === 'success' ? (

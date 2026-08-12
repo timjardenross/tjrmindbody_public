@@ -6,6 +6,8 @@ seo:
 
 This page explains, in simple language, how TJR Mind & Body may collect, use, store, and manage personal information shared through the website or by email.
 
+TJR Mind & Body operates under ABN 13 243 445 248.
+
 ## What information may be collected
 
 TJR Mind & Body may collect personal information that you choose to provide, such as your name, email address, and the contents of messages you send through contact forms or direct email.

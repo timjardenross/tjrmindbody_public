@@ -44,6 +44,11 @@ For CMS setup, content publishing, local development, and disaster recovery, see
 (`public-site/docs/ARCHITECTURE.md`, `CMS-SETUP.md`, `PUBLISHING-GUIDE.md`,
 `LOCAL-DEVELOPMENT.md`, `DISASTER-RECOVERY.md`).
 
+The REVS MVP notes for the connected flow and database setup live in
+[`public-site/docs/REVS-DELIVERY-PIPELINE.md`](public-site/docs/REVS-DELIVERY-PIPELINE.md),
+[`public-site/docs/REVS-NOW-NEXT-LATER.md`](public-site/docs/REVS-NOW-NEXT-LATER.md),
+and [`public-site/docs/REVS-DATABASE-SETUP.md`](public-site/docs/REVS-DATABASE-SETUP.md).
+
 ---
 
 ## Governance

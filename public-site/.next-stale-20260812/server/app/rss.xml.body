@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>TJR Mind &amp; Body</title>
+        <link>http://localhost:3200</link>
+        <description>Practical resilience coaching and education for people navigating pressure, burnout, chronic pain, disruption, and steady rebuilding.</description>
+        <lastBuildDate>Wed, 12 Aug 2026 04:09:27 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en-GB</language>
+        <copyright>All rights reserved TJR Mind &amp; Body</copyright>
+        <atom:link href="http://localhost:3200/rss.xml" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>

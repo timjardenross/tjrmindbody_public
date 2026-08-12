@@ -24,6 +24,11 @@ npm run dev
 - [`docs/PUBLISHING-GUIDE.md`](docs/PUBLISHING-GUIDE.md) — how to write and publish content
 - [`docs/LOCAL-DEVELOPMENT.md`](docs/LOCAL-DEVELOPMENT.md) — running this app locally
 - [`docs/DISASTER-RECOVERY.md`](docs/DISASTER-RECOVERY.md) — recovering content, deployments or CMS access
+- [`docs/REVS-DELIVERY-PIPELINE.md`](docs/REVS-DELIVERY-PIPELINE.md) — practical build order for the REVS MVP
+- [`docs/REVS-NOW-NEXT-LATER.md`](docs/REVS-NOW-NEXT-LATER.md) — the simple shared track for day-to-day work
+- [`docs/REVS-DATABASE-SETUP.md`](docs/REVS-DATABASE-SETUP.md) — how to wire the PostgreSQL connection string
+- [`docs/REVS-CONTENT-OPS-PLAN.md`](docs/REVS-CONTENT-OPS-PLAN.md) — the REVS structured content build track
+- [`docs/REVS-STATUS-MAP.md`](docs/REVS-STATUS-MAP.md) — the current working status map
 
 ## Content collections
 

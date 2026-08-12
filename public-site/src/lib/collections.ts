@@ -36,7 +36,7 @@ export const collections: CollectionDef[] = [
     contentDir: 'library',
     isArticleType: true,
     description:
-      'REVS educational articles, guides, worksheets, visual explainers and practical resources for understanding human capacity.',
+      'News, posts, updates, and short-form reflections from TJR Mind & Body.',
     inSearch: true,
     inFeed: true,
     inSitemap: true,

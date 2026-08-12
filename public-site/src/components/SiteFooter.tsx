@@ -3,10 +3,13 @@ import { site } from '@/lib/site';
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-white">
-      <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-ink-light">
-        <p className="mb-4 text-ink-mid">
+    <footer className="border-t border-navy/10 bg-white/90">
+      <div className="mx-auto max-w-5xl px-4 py-10 text-sm text-ink-light">
+        <p className="mb-4 max-w-2xl text-ink-mid">
           Support, coaching, education, practical resilience, self-management, and rebuilding.
+        </p>
+        <p className="mb-4 font-semibold text-navy">
+          ABN 13 243 445 248
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p>

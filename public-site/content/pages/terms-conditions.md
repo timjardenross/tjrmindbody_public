@@ -6,6 +6,8 @@ seo:
 
 These terms describe the general basis on which people use the TJR Mind & Body website and content.
 
+TJR Mind & Body operates under ABN 13 243 445 248.
+
 ## Purpose of the website
 
 TJR Mind & Body is a practical resilience coaching and education brand. The website is intended to share information about support, coaching, education, practical resilience, self-management, and rebuilding.
