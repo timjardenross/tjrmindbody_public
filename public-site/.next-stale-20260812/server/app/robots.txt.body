@@ -1,8 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api
-Disallow: /search
-Disallow: /search-index.json
-
-Sitemap: http://localhost:3200/sitemap.xml
