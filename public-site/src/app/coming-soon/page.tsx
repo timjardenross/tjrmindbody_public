@@ -20,11 +20,11 @@ export default function ComingSoonPage() {
           <div className="mt-10 max-w-3xl">
             <h1 className="font-serif text-5xl font-bold leading-[0.95] tracking-tight text-navy sm:text-6xl md:text-7xl">Build practical resilience, together</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-mid sm:text-xl">
-              Practical coaching and educational resources grounded in lived experience, offered with a gentler pace. Start by noticing what is asking
-              for more care, then build steadier systems one step at a time.
+              Coaching and educational resources grounded in lived experience, kept simple and at a slower pace. Start by noticing what needs more care,
+              then build from there one step at a time.
             </p>
             <p className="mt-6 max-w-2xl border-l-4 border-teal pl-4 text-base font-semibold leading-7 text-navy">
-              TJR Mind & Body is still being built, and that work continues to evolve openly and thoughtfully.
+              TJR Mind & Body is still being built, and the work will keep changing as it grows.
             </p>
           </div>
         </section>
