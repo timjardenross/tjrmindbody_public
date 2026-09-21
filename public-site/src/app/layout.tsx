@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Source_Serif_4 } from 'next/font/google';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { PainProfileProvider } from '@/components/pain/PainProfileProvider';
 import { site, absoluteUrl } from '@/lib/site';
 import './globals.css';
 
@@ -41,9 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
+        <PainProfileProvider>
+          <main id="main-content" className="flex-1">{children}</main>
+        </PainProfileProvider>
         <SiteFooter />
       </body>
     </html>
