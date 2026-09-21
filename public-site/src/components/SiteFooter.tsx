@@ -8,6 +8,10 @@ export function SiteFooter() {
         <p className="mb-4 text-ink-mid">
           Support, coaching, education, practical resilience, self-management, and rebuilding.
         </p>
+        <p className="mb-4 text-sm leading-6 text-ink-mid">
+          TJR Mind &amp; Body offers coaching and educational support only. It does not provide medical advice,
+          diagnosis, or treatment, and it does not claim to cure or treat any condition.
+        </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {site.name}. All rights reserved.

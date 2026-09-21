@@ -30,7 +30,8 @@ export default function LetsChat() {
 
       <div className="mt-6 rounded-[34px] border border-border bg-white/80 p-8">
         <p className="text-sm text-ink-mid">
-          This brand is about practical resilience, self-management, support, and steady rebuilding. It is not positioned as treatment, cure, or medical advice.
+          This work is about practical resilience, self-management, and support. It is educational and coaching-based,
+          and it is not a substitute for medical advice, diagnosis, or treatment.
         </p>
       </div>
     </div>

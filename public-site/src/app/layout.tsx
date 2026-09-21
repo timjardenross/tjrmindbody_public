@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Source_Serif_4 } from 'next/font/google';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { SupportNotice } from '@/components/SupportNotice';
 import { site, absoluteUrl } from '@/lib/site';
 import './globals.css';
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <SiteHeader />
+        <SupportNotice />
         <main id="main-content" className="flex-1">
           {children}
         </main>
