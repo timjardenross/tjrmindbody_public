@@ -30,7 +30,12 @@ export type PainProfile = {
   };
   influences: Partial<Record<InfluenceKey, InfluenceLevel>>;
   care: { needs: string[]; roles: Record<string, string>; questions: string[] };
-  capacity: { green: string[]; amber: string[]; red: string[] };
+  capacity: {
+    green: { signs: string[]; maintain: string[]; useCapacityFor: string[] };
+    amber: { warningSigns: string[]; reduce: string[]; delay: string[]; change: string[]; protect: string[] };
+    red: { signs: string[]; essential: string[]; canWait: string[]; recoverySupports: string[]; loadSupport: string[] };
+    today?: { selfSelectedState: 'green' | 'amber' | 'red' | 'notSure'; loadDimensions: string[]; protectOne: string; adjustOne: string; updatedAt: string };
+  };
   flarePlan: Record<string, string>;
   treatmentMap: { current: string[]; previous: string[]; discuss: string[] };
   nextSteps: string[];
@@ -44,7 +49,11 @@ export const EMPTY_PAIN_PROFILE: PainProfile = {
   painSnapshot: { where: '', what: '', when: '', changes: '', affects: '' },
   influences: {},
   care: { needs: [], roles: {}, questions: [] },
-  capacity: { green: [], amber: [], red: [] },
+  capacity: {
+    green: { signs: [], maintain: [], useCapacityFor: [] },
+    amber: { warningSigns: [], reduce: [], delay: [], change: [], protect: [] },
+    red: { signs: [], essential: [], canWait: [], recoverySupports: [], loadSupport: [] },
+  },
   flarePlan: {},
   treatmentMap: { current: [], previous: [], discuss: [] },
   nextSteps: [],
@@ -65,7 +74,13 @@ export function mergePainProfile(raw: unknown): PainProfile {
     painSnapshot: { ...base.painSnapshot, ...(value.painSnapshot || {}) },
     influences: { ...base.influences, ...(value.influences || {}) },
     care: { ...base.care, ...(value.care || {}) },
-    capacity: { ...base.capacity, ...(value.capacity || {}) },
+    capacity: {
+      ...base.capacity,
+      ...(value.capacity || {}),
+      green: { ...base.capacity.green, ...(value.capacity?.green || {}) },
+      amber: { ...base.capacity.amber, ...(value.capacity?.amber || {}) },
+      red: { ...base.capacity.red, ...(value.capacity?.red || {}) },
+    },
     flarePlan: { ...base.flarePlan, ...(value.flarePlan || {}) },
     treatmentMap: { ...base.treatmentMap, ...(value.treatmentMap || {}) },
     nextSteps: value.nextSteps || [],
@@ -78,7 +93,7 @@ export function countStartedSections(profile: PainProfile): number {
     Object.values(profile.painSnapshot).some(Boolean),
     Object.keys(profile.influences).length > 0,
     profile.care.needs.length > 0 || Object.keys(profile.care.roles).length > 0 || profile.care.questions.length > 0,
-    profile.capacity.green.length > 0 || profile.capacity.amber.length > 0 || profile.capacity.red.length > 0,
+    Object.values(profile.capacity.green).some((items) => items.length > 0) || Object.values(profile.capacity.amber).some((items) => items.length > 0) || Object.values(profile.capacity.red).some((items) => items.length > 0),
     Object.keys(profile.flarePlan).length > 0,
     profile.treatmentMap.current.length > 0 || profile.treatmentMap.previous.length > 0 || profile.treatmentMap.discuss.length > 0,
   ];
@@ -110,7 +125,7 @@ export function buildPainOutput(profile: PainProfile, output: PainOutput) {
       ['What matters to me', profile.whatMatters.priority],
       ['Pain snapshot', Object.values(profile.painSnapshot).filter(Boolean).join(' · ')],
       ['Care team', Object.values(profile.care.roles).filter(Boolean).join(' · ')],
-      ['Capacity', [...profile.capacity.green, ...profile.capacity.amber, ...profile.capacity.red].join(' · ')],
+      ['Capacity', [...Object.values(profile.capacity.green), ...Object.values(profile.capacity.amber), ...Object.values(profile.capacity.red)].flat().join(' · ')],
       ['Treatments to discuss', profile.treatmentMap.discuss.join(' · ')],
       ['My next steps', profile.nextSteps.join(' · ')],
     ],
