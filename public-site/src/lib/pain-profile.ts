@@ -36,7 +36,17 @@ export type PainProfile = {
     red: { signs: string[]; essential: string[]; canWait: string[]; recoverySupports: string[]; loadSupport: string[] };
     today?: { selfSelectedState: 'green' | 'amber' | 'red' | 'notSure'; loadDimensions: string[]; protectOne: string; adjustOne: string; updatedAt: string };
   };
-  flarePlan: Record<string, string>;
+  flarePlan: {
+    usualPattern: string;
+    warningSigns: string[];
+    helps: string[];
+    worsens: string[];
+    reduce: string[];
+    maintain: string[];
+    support: string[];
+    escalationPlan: string;
+    updatedAt: string;
+  };
   treatmentMap: { current: string[]; previous: string[]; discuss: string[] };
   nextSteps: string[];
 };
@@ -54,7 +64,7 @@ export const EMPTY_PAIN_PROFILE: PainProfile = {
     amber: { warningSigns: [], reduce: [], delay: [], change: [], protect: [] },
     red: { signs: [], essential: [], canWait: [], recoverySupports: [], loadSupport: [] },
   },
-  flarePlan: {},
+  flarePlan: { usualPattern: '', warningSigns: [], helps: [], worsens: [], reduce: [], maintain: [], support: [], escalationPlan: '', updatedAt: '' },
   treatmentMap: { current: [], previous: [], discuss: [] },
   nextSteps: [],
 };
@@ -116,7 +126,7 @@ export function buildPainOutput(profile: PainProfile, output: PainOutput) {
     };
   }
   if (output === 'flareCard') {
-    return { title: 'My Flare Card', purpose: 'A quick reference built from choices you have saved.', sections: Object.entries(profile.flarePlan) };
+    return { title: 'My Flare Card', purpose: 'A quick reference built from choices you have saved.', sections: [['What I notice', [...profile.flarePlan.warningSigns, profile.flarePlan.usualPattern].filter(Boolean).join(' · ')], ['What helps', profile.flarePlan.helps.join(' · ')], ['What tends to make it harder', profile.flarePlan.worsens.join(' · ')], ['What I can reduce', profile.flarePlan.reduce.join(' · ')], ['What I maintain', profile.flarePlan.maintain.join(' · ')], ['Support', profile.flarePlan.support.join(' · ')], ['My health plan', profile.flarePlan.escalationPlan]] };
   }
   return {
     title: 'My Pain Plan',
