@@ -19,6 +19,25 @@ const nextConfig = {
       { source: '/resources', destination: '/library', permanent: true },
     ];
   },
+  async headers() {
+    return [
+      {
+        source: '/pain/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, max-age=0' },
+          { key: 'CDN-Cache-Control', value: 'no-store' },
+        ],
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [{ key: 'Cache-Control', value: 'no-store, max-age=0' }],
+      },
+      {
+        source: '/robots.txt',
+        headers: [{ key: 'Cache-Control', value: 'no-store, max-age=0' }],
+      },
+    ];
+  },
   async rewrites() {
     // `/admin` has no exact match in public/ (only /admin/index.html does) and
     // would otherwise be swallowed by the [collection] catch-all route, since
