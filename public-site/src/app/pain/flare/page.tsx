@@ -13,7 +13,7 @@ type FlareKey = (typeof prompts)[number][0];
 const displayPlanValue = (value: string | string[]) => Array.isArray(value) ? value.join(' · ') : value;
 
 function Nav() {
-  return <aside className="pain-rail" aria-label="Pathway navigation"><div className="rail-brand"><span className="brand-mark">✦</span><span>TJR<br /><b>Mind &amp; Body</b></span></div><div className="rail-line" /><nav><a href="/pain/understand"><span>01</span>Understand</a><a href="/pain/capacity"><span>04</span>Capacity</a><a href="#flare"><span>05</span>Flares</a></nav></aside>;
+  return <aside className="pain-rail" aria-label="Pathway navigation"><div className="rail-brand"><span className="brand-mark">✦</span><span>TJR<br /><b>Mind &amp; Body</b></span></div><div className="rail-line" /><nav><a href="/pain/understand"><span>01</span>Understand</a><a href="/pain/care"><span>02</span>Find help</a><a href="/pain/capacity"><span>03</span>Capacity</a><a href="#flare"><span>04</span>Flares</a><a href="/pain/plan"><span>05</span>My plan</a></nav></aside>;
 }
 
 function FlareCard({ profile, onClose }: { profile: PainProfile; onClose: () => void }) {
