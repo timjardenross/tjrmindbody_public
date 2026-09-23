@@ -51,5 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // its own — intentionally not listed. The private `/discover-your-capacity`
   // prototype is also intentionally excluded. Category/tag/pagination pages
   // are likewise excluded as thin/duplicate listing views.
-  return [...homeRoute, ...collectionIndexRoutes, ...entryRoutes, ...pageRoutes];
+  const pathwayRoutes: MetadataRoute.Sitemap = ['/pain/understand', '/pain/care', '/pain/capacity', '/pain/flare', '/pain/plan'].map((path) => ({ url: absoluteUrl(path), lastModified: SITE_LAUNCH_DATE }));
+  return [...homeRoute, ...collectionIndexRoutes, ...entryRoutes, ...pageRoutes, ...pathwayRoutes];
 }

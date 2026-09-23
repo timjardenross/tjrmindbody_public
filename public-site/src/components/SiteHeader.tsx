@@ -5,6 +5,7 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Approach', href: '/approach' },
   { label: 'Library', href: '/library' },
+  { label: 'Pain Pathway', href: '/pain/understand' },
 ];
 
 export function SiteHeader() {
