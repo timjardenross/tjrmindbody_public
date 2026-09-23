@@ -5,14 +5,9 @@ import { usePainProfile } from '@/components/pain/PainProfileProvider';
 import { buildPainOutput, type PainProfile } from '@/lib/pain-profile';
 
 const prompts = [
-  ['usualPattern', 'What does a usual difficult pain period look like for you?', 'A short description in your own words…'],
-  ['warningSigns', 'I know one may be developing when…', 'A sign you notice…'],
-  ['helps', 'Things that usually help me…', 'Something you have chosen before…'],
-  ['worsens', 'Things that tend to make it harder…', 'Something you have noticed…'],
-  ['reduce', 'What I can reduce…', 'A non-essential load…'],
-  ['maintain', 'What I want to maintain…', 'An essential or supportive routine…'],
-  ['support', 'Support I can use…', 'A role, person or service…'],
-  ['escalationPlan', 'My existing health or escalation plan…', 'Only information you have already been given…'],
+  ['helps', 'What usually helps, and what tends to make things worse', 'A few words about what helps or makes a difficult period harder…'],
+  ['reduce', 'What you reduce first, and what you still try to maintain', 'A few words about what can reduce, delay, change or protect…'],
+  ['support', 'Who can help, and when you would contact your healthcare team', 'A person, service or existing plan…'],
 ] as const;
 type FlareKey = (typeof prompts)[number][0];
 const displayPlanValue = (value: string | string[]) => Array.isArray(value) ? value.join(' · ') : value;
